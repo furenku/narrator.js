@@ -1,7 +1,11 @@
 $spacing: 30px;
 $highlightColor : #fff;
 
-$fontS: 9px;
+$fontXS: 9px;
+$fontS: 12px;
+$fontM: 16px;
+$fontML: 19px;
+$fontL: 25px;
 
 
 
@@ -225,8 +229,10 @@ body {
 		background-color: #222;
 		&:hover{
 			background-color: #000;
+			color:#4099ff;
 		}
 	}
+
 	#tweets {
 		img {
 			max-height: 20vh;
@@ -242,6 +248,17 @@ body {
 	}
 
 	#tools {
+		.boton {
+			font-size: $fontML;
+			color: #666;
+			cursor: pointer;
+		}
+		#notify {
+			cursor: default;
+		}
+		.boton.active {
+			color:#4099ff !important;
+		}
 		#changed {
 			width: $spacing;
 			height: $spacing;
@@ -293,18 +310,18 @@ body {
 
 
 			}
+
+
 			.contenedor {
 				&,div {
 				}
 				@extend .abs;
 
-				.media_display {
-					img {
-						max-width: 30vw;
-						max-height: 20vh;
-					}
-				}
+			}
 
+			.video {
+				@extend .contenedor;
+				width: 100%;
 			}
 
 			.scaler {
@@ -349,4 +366,15 @@ body {
 	}
 
 
+}
+
+
+
+
+
+.media_display {
+	img {
+		max-width: 30vw;
+		max-height: 20vh;
+	}
 }

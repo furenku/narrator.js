@@ -5,7 +5,8 @@ div.css({left:d,position:'absolute'});
 }
 function vcenter( div, target ) {
 var pH = target.height();
-var d = ( pH - div.height() ) / 2;
+var d = ( pH - div.height() ) / 4;
+console.log(pH, d)
 div.css({top:d,position:'absolute'});        
 }
 

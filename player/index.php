@@ -56,7 +56,10 @@
         <div  class="boton medium-3 columns"><span class="fa fa-search"></span></div>
       </div>
       <div id="tools" class="small-12 columns text-right">
-        <div id="changed"></div>
+        <div  class="boton medium-3 columns active"><span class="fa fa-search"></span></div>
+        <div  class="boton medium-3 columns"><span class="fa fa-user"></span></div>
+        <div  class="boton medium-3 columns"><span class="fa fa-pencil"></span></div>
+        <div id="notify"  class="boton medium-3 columns"><span class="fa fa-twitter"></span></div>
       </div>
       <div id="tweets" class="medium-12 columns fillH"></div>
       <div id="tweetDB" class="hidden"></div>
@@ -91,6 +94,7 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jquery.tube/jquery.tube.min.js"></script>
 
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/utils.js"></script>

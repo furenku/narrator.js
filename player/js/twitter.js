@@ -51,24 +51,29 @@ var searchTW = function(){
 
 			
 			if( changed ) {
-				$('#twitter #tools #changed').animate({backgroundColor:'#f00'},300,function(){
-					$('#twitter #tools #changed').animate({backgroundColor:'#222'},3000);
+				$('#twitter #tools #notify').animate({color:'#4099ff'},300,function(){
+					$('#twitter #tools #notify').animate({color:'#666'},3000);
 				})
-				$('#tweetDB').html('');
-				$('#twitter_media .scrollX').html("");
+				//$('#tweetDB').html('');
+				//$('#twitter_media .scrollX').html("");
 				for( i in tweets ) {
 					tweet = $('<div>').addClass("medium-12 columns tweet");
 					tweet.append( '<div class="row date">' + moment( new Date( tweets[i].created_at)).fromNow() + '</div>' );					
 					tweet.append( '<div class="row text">' + tweets[i].text + '</div>' );					
 					tweet.append( '<div class="row media_display"></div>' );					
-					var media = tweets[i].entities.media ;
-					for( j in media ) {
+					if( typeof(tweets[i].entities) != "undefined" ) {
+						
+						var media = tweets[i].entities.media ;
+						if( typeof(tweets[i].entities.media) != "undefined" ) {
+							for( j in media ) {
 
-						if( media[j].type == "photo" ) {
+								if( media[j].type == "photo" ) {
 
-							tweet.find('.media_display').append( $('<div>').addClass('media').html(
-								$('<a>').attr('href',media[j].media_url ).html(
-								$('<img>').attr('src',media[j].media_url ) ) ) );
+									tweet.find('.media_display').append( $('<div>').addClass('media').html(
+										$('<a>').attr('href',media[j].media_url ).html(
+										$('<img>').attr('src',media[j].media_url ) ) ) );
+								}
+							}
 						}
 					}
 					$('#tweetDB').append( tweet );					
@@ -80,14 +85,19 @@ var searchTW = function(){
 					tweet.append( '<div class="row date">' + moment( new Date( newTweet.created_at)).fromNow() + '</div>' );					
 					tweet.append( '<div class="row text">' + newTweet.text + '</div>' );					
 					tweet.append( '<div class="row media_display"></div>' );					
-					var media = newTweet.entities.media ;
-					for( j in media ) {
+					if( typeof(newTweet.entities) != "undefined" ) {
+						
+						var media = newTweet.entities.media ;
+						if( typeof(newTweet.entities.media) != "undefined" ) {
+							for( j in media ) {
 
-						if( media[j].type == "photo" ) {
+								if( media[j].type == "photo" ) {
 
-							tweet.find('.media_display').append( $('<div>').addClass('media').html(
-								$('<a>').attr('href',media[j].media_url ).html(
-								$('<img>').attr('src',media[j].media_url ) ) ) );
+									tweet.find('.media_display').append( $('<div>').addClass('media').html(
+										$('<a>').attr('href',media[j].media_url ).html(
+										$('<img>').attr('src',media[j].media_url ) ) ) );
+								}
+							}
 						}
 					}
 					$('#tweets').prepend( tweet );					
@@ -156,9 +166,19 @@ search.on("click",function(e){
 	search.val("");
 });
 
+
+$('#tools .boton').click(function(){
+	var boton = $(this);
+	boton.siblings().removeClass('active');
+	boton.addClass('active');
+});
+
+
+
 var twitterAnimation;
 $('#search .boton').click(function(){
 	searchTW();
+	$('#twitter #tweets').html('');
 	setInterval(searchTW,12000);
 })
 //searchTW();
