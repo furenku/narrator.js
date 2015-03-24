@@ -139,21 +139,20 @@ function mediaDiv( type, content ) {
 
 }
 
-function abrirContenido( contenido ) {
-
+function abrirContenido( contenido, i ) {
+	var pantalla = $('#pantallas .pantalla').eq(i);
 	var result;
 	console.log( contenido.info.title )
 	if( typeof(  contenido.media ) != 'undefined' ) {
 		var num =  contenido.media.length;
 		console.log( num, contenido.media );
-		result = $('<div>');
+		result = $('<div>').addClass('media_player');
 		for (var j = 0; j <= num; j++) {
 			if( typeof(  contenido.media[j] ) != 'undefined' ) {
 
 				var mediaHolder =  contenido.media[j];								
 
 				var key = mediaHolder.tipo;
-				console.log(key);
 				for( var m = 0; m <  mediaHolder.media.length; m++) {
 					var mediaItem = mediaHolder.media[m];
 					var content;
@@ -166,11 +165,11 @@ function abrirContenido( contenido ) {
 						}
 
 						if( key === "videos" ) {
-							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<video>').append( $('<source>').attr('src',mediaItem) ) );												
+							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<video>').append( $('<source>').attr('src',mediaItem) ).attr('autoplay', 'autoplay') );												
 						}
 
 						if( key === "audios" ) {
-							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<audio>').append( $('<source>').attr('src',mediaItem) ) );												
+							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<audio>').append( $('<source>').attr('src',mediaItem) ).attr('autoplay', 'autoplay')  );												
 						}
 
 						if( key === "tweet_ids" ) {
@@ -180,7 +179,11 @@ function abrirContenido( contenido ) {
 								
 						console.log( content );
 						
-						result.append( $('<div>').attr("class","media_" + key + " media").html( content ) );
+						var mediaP = $('<div>').attr("class","media_" + key + " media").html( content );
+
+						mediaP.width( pantalla.width() );
+						mediaP.css({ maxHeight: pantalla.width() });
+						result.append( mediaP );
 					}
 
 				}
@@ -193,7 +196,8 @@ function abrirContenido( contenido ) {
 	}
 
 	console.log( result );
-	$('#pantallas .pantalla').eq(0).append(result);
+	//pantalla.find('video').remove();
+	pantalla.html(result);
 	
 }
 
@@ -217,8 +221,9 @@ function abrirSecuencia( secuencia ) {
 				var media = cnt.media;
 				var cntDiv = mediaDiv("contenido",nombre);//$('<div>').addClass('marker media');		
 				
-				cntDiv.click(function(){
-					abrirContenido (  contenidos[ $(this).index() ] );
+				cntDiv.find('.screenbutton').click(function(){
+					console.log (  "SCR", $(this).parent().parent().index(), $(this).index() );
+					abrirContenido (  contenidos[ $(this).parent().parent().index() ], $(this).index() );
 				});		
 				cntDiv.css({left:( $(window).width() / num ) * j })
 				nDiv.append( cntDiv );

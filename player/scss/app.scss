@@ -342,6 +342,16 @@ body {
 
 			display: inline-block;
 			
+			.media_player {
+				@extend .abs;
+				@extend .wh100;
+
+			}
+
+			video {
+			  width: 100%    !important;
+			  height: auto   !important;
+			}
 
 			.tweet {
 				color: #fff;

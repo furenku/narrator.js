@@ -9231,7 +9231,7 @@ th.hide-for-touch {
 }
 
 /* line 72, ../scss/app.scss */
-.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clear, #player #pantallas .pantalla, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
+.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clear, #player #pantallas .pantalla, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
   position: absolute;
   left: 0;
   top: 0;
@@ -9254,12 +9254,12 @@ th.hide-for-touch {
 }
 
 /* line 93, ../scss/app.scss */
-.w100, .wh100, html, body, .progress_bar_holder, .progress_bar_holder div {
+.w100, .wh100, html, body, #player #pantallas .pantalla .media_player, .progress_bar_holder, .progress_bar_holder div {
   width: 100%;
 }
 
 /* line 96, ../scss/app.scss */
-.h100, .wh100, html, body {
+.h100, .wh100, html, body, #player #pantallas .pantalla .media_player {
   height: 100%;
 }
 
@@ -9450,33 +9450,38 @@ body {
   background-color: #000;
   display: inline-block;
 }
-/* line 346, ../scss/app.scss */
+/* line 351, ../scss/app.scss */
+#player #pantallas .pantalla video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+/* line 356, ../scss/app.scss */
 #player #pantallas .pantalla .tweet {
   color: #fff;
 }
-/* line 350, ../scss/app.scss */
+/* line 360, ../scss/app.scss */
 #player #pantallas .pantalla .contenido {
   background-color: #00f;
 }
-/* line 367, ../scss/app.scss */
+/* line 377, ../scss/app.scss */
 #player #pantallas .pantalla .video {
   width: 100%;
 }
-/* line 372, ../scss/app.scss */
+/* line 382, ../scss/app.scss */
 #player #pantallas .pantalla .scaler {
   transform: scale(1);
   -webkit-transition: -moz-transform 15s ease-out;
   -moz-transition: -webkit-transform 15s ease-out;
 }
 
-/* line 384, ../scss/app.scss */
+/* line 394, ../scss/app.scss */
 #twitter_media, #secuencia_media {
   overflow-x: auto;
   overflow-y: hidden;
   background-color: #111;
   height: 120px;
 }
-/* line 391, ../scss/app.scss */
+/* line 401, ../scss/app.scss */
 #twitter_media .scrollX, #secuencia_media .scrollX {
   background-color: #111;
   width: auto;
@@ -9484,7 +9489,7 @@ body {
   min-width: 100%;
   height: 120px;
 }
-/* line 399, ../scss/app.scss */
+/* line 409, ../scss/app.scss */
 #twitter_media .media, #secuencia_media .media {
   width: 120px;
   height: 120px;
@@ -9495,18 +9500,18 @@ body {
   color: #aaa;
   font-size: 9px;
 }
-/* line 408, ../scss/app.scss */
+/* line 418, ../scss/app.scss */
 #twitter_media .media img, #secuencia_media .media img {
   max-width: 100%;
   height: auto;
   max-height: 100%;
 }
-/* line 417, ../scss/app.scss */
+/* line 427, ../scss/app.scss */
 #twitter_media .media .row, #twitter_media .media .xrow, #secuencia_media .media .row, #secuencia_media .media .xrow {
   width: 80%;
   margin-left: 10%;
 }
-/* line 421, ../scss/app.scss */
+/* line 431, ../scss/app.scss */
 #twitter_media .media .screenbutton, #secuencia_media .media .screenbutton {
   height: 15px;
   border: 1px solid #999;
@@ -9516,12 +9521,12 @@ body {
   width: 30px;
   float: left;
 }
-/* line 430, ../scss/app.scss */
+/* line 440, ../scss/app.scss */
 #twitter_media .media .screenbutton:hover, #secuencia_media .media .screenbutton:hover {
   background-color: #444;
 }
 
-/* line 444, ../scss/app.scss */
+/* line 454, ../scss/app.scss */
 .media_display img {
   max-width: 30vw;
   max-height: 20vh;
