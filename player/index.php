@@ -56,9 +56,9 @@
         <div  class="boton medium-3 columns"><span class="fa fa-search"></span></div>
       </div>
       <div id="tools" class="small-12 columns text-right">
-        <div  class="boton medium-6 large-3 columns active"><span class="fa fa-search"></span></div>
-        <div  class="boton medium-6 large-3 columns"><span class="fa fa-user"></span></div>
-        <div  class="boton medium-6 large-3 columns"><span class="fa fa-pencil"></span></div>
+        <div id="search_tw" class="toggle boton medium-6 large-3 columns active"><span class="fa fa-search"></span></div>
+        <div id="user_tw" class="toggle boton medium-6 large-3 columns"><span class="fa fa-user"></span></div>
+        <div id="play" class="boton medium-6 large-3 columns"><span class="fa fa-play"></span></div>
         <div id="notify"  class="boton medium-6 large-3 columns"><span class="fa fa-twitter"></span></div>
       </div>
       <div id="tweets" class="medium-12 columns fillH"></div>
