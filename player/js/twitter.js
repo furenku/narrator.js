@@ -1,4 +1,5 @@
 var twitterPlay = false;
+var twitterAnimate = false;
 var max_id
 var tweets = Array();
 var tweetsID = Array();
@@ -57,7 +58,7 @@ var searchTW = function(){
 					})
 					//$('#tweetDB').html('');
 					//$('#twitter_media .scrollX').html("");
-					console.log(tweets[0])
+
 					for( i in tweets ) {
 						tweet = $('<div>').addClass("medium-12 columns tweet");
 						if( typeof(tweets[i].user) != "undefined" )
@@ -122,49 +123,51 @@ var searchTW = function(){
 		var pantallaIndex = 0;
 		var twitterIndex = 0;
 		function twitterFill(){
-			var tweets = $('#tweetDB .tweet');
-			var tweet = tweets.eq( twitterIndex );
+			// if( twitterAnimate ) {
+				var tweets = $('#tweetDB .tweet');
+				var tweet = tweets.eq( twitterIndex );
 
-			var pantallas = $('#pantallas .pantalla');
-			var pantalla =  pantallas.eq( pantallaIndex );
+				var pantallas = $('#pantallas .pantalla');
+				var pantalla =  pantallas.eq( pantallaIndex );
 
-			var div  = $('<div>').attr('id',"tweet_"+Math.floor(Math.random()*10000)).attr('class',"tweet contenedor");
+				var div  = $('<div>').attr('id',"tweet_"+Math.floor(Math.random()*10000)).attr('class',"tweet contenedor");
 
 
-			var dW = pantalla.width() * 0.8;
-			var dH = pantalla.height() * 0.8;
+				var dW = pantalla.width() * 0.8;
+				var dH = pantalla.height() * 0.8;
 
-			var randW = ( dW * 0.5 * Math.random() ) + (pantalla.width() * 0.25 );
-			var randH = ( dH * 0.5 * Math.random() ) + (pantalla.height() * 0.25 );
+				var randW = ( dW * 0.5 * Math.random() ) + (pantalla.width() * 0.25 );
+				var randH = ( dH * 0.5 * Math.random() ) + (pantalla.height() * 0.25 );
 
-			var randY = ( dH * Math.random() ) + (pantalla.height() * 0.1 );
-			if( randY > dH - randH ) {
-				randY = dH - randH ;
+				var randY = ( dH * Math.random() ) + (pantalla.height() * 0.1 );
+				if( randY > dH - randH ) {
+					randY = dH - randH ;
+				}
+				var randX = ( dW * Math.random() ) + (pantalla.width() * 0.1 );
+				if( randX > dW - randW ) {
+					randX = dW - randW ;
+				}
+				
+				div.css({ left: randX, top: randY, fontSize: dH / 30 });
+				div.css({ border: '1px solid #444', color: "#ffffff" });
+				div.html(tweet);
+				div.animate({ opacity: 0 },8000,function(){div.remove()});
+				//div.animate({ opacity: 0, top: randY - 20, left: randX - 50 },8000,function(){div.remove()});
+				// div.addClass('scaler');
+				// div.css({ transform: 'scale(0)' });
+
+				pantalla.append( div );
+				pantallaIndex++;
+				if( pantallaIndex > pantallas.length )
+					pantallaIndex = 0;
+				
+				twitterIndex++;
+				if( twitterIndex > tweets.length )
+					twitterIndex = 0;
 			}
-			var randX = ( dW * Math.random() ) + (pantalla.width() * 0.1 );
-			if( randX > dW - randW ) {
-				randX = dW - randW ;
-			}
-			
-			div.css({ left: randX, top: randY, fontSize: dH / 30 });
-			div.css({ border: '1px solid #444', color: "#ffffff" });
-			div.html(tweet);
-			div.animate({ opacity: 0 },8000,function(){div.remove()});
-			//div.animate({ opacity: 0, top: randY - 20, left: randX - 50 },8000,function(){div.remove()});
-			// div.addClass('scaler');
-			// div.css({ transform: 'scale(0)' });
-
-			pantalla.append( div );
-			pantallaIndex++;
-			if( pantallaIndex > pantallas.length )
-				pantallaIndex = 0;
-			
-			twitterIndex++;
-			if( twitterIndex > tweets.length )
-				twitterIndex = 0;
-		}
-		clearInterval( twitterAnimation );
-		twitterAnimation = setInterval(twitterFill, 1000);
+			clearInterval( twitterAnimation );
+			twitterAnimation = setInterval(twitterFill, 1000);
+		// }
 
 	}
 };
@@ -188,8 +191,22 @@ $('#tools #play').click(function(){
 	if( boton.hasClass('active') ) {
 		twitterPlay = true;
 	} else {
+		clearInterval( twitterSearch );
 
 		twitterPlay = false;
+	}
+});
+
+
+$('#tools #animate').click(function(){
+	var boton = $(this);
+	boton.toggleClass('active');
+	if( boton.hasClass('active') ) {
+		twitterAnimate = true;
+		console.log("anim", twitterAnimate);
+	} else {
+		clearInterval( twitterAnimation );
+		twitterAnimate = false;
 	}
 });
 

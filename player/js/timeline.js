@@ -173,6 +173,14 @@ function abrirContenido( contenido, i ) {
 					content = mediaItem;
 					if( mediaItem != "" ) {
 
+						if( key === "textos" ) {
+							var vtable = makeDiv("","vcenter_content").html( content );
+							vtable = makeDiv("","vcenter_container").html( vtable );
+							vtable = makeDiv("","vcenter_table").html( vtable );
+							content = vtable;
+
+						}
+
 						if( key === "imagenes" ) {
 							content = $('<img>').attr('src', mediaItem );
 							content = $('<a>').attr('href',mediaItem).attr('data-lightbox',contenido.info.title).attr('data-title','').html( content );												
@@ -191,10 +199,14 @@ function abrirContenido( contenido, i ) {
 						}
 
 						if( key === "urls" ) {
-							console.log( "url" );
+
+							var url = mediaItem.url;
+							var inicio = mediaItem.inicio;
+							var final = mediaItem.final;
 
 
-							var url = mediaItem.split("=")[1];
+							var url = url.split("=")[1];
+							console.log( url,inicio,final );
 							
 							var vd = $('<div>').addClass('video');
 							pantalla.append( vd );

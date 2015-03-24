@@ -9210,70 +9210,93 @@ th.hide-for-touch {
   }
 }
 /* line 54, ../scss/app.scss */
+.vcenter_table {
+  display: table;
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+}
+
+/* line 55, ../scss/app.scss */
+.vcenter_container {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: 0 !important;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 56, ../scss/app.scss */
+.vcenter_content {
+  display: inline-block;
+}
+
+/* line 59, ../scss/app.scss */
 .fitH {
   overflow: hidden;
 }
 
-/* line 58, ../scss/app.scss */
+/* line 63, ../scss/app.scss */
 .hidden {
   display: none;
 }
 
-/* line 61, ../scss/app.scss */
+/* line 66, ../scss/app.scss */
 .mp0, .xrow, html, body {
   margin: 0;
   padding: 0;
 }
 
-/* line 65, ../scss/app.scss */
+/* line 70, ../scss/app.scss */
 .xrow {
   max-width: 100%;
 }
 
-/* line 72, ../scss/app.scss */
+/* line 77, ../scss/app.scss */
 .abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clear, #player #pantallas .pantalla, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-/* line 78, ../scss/app.scss */
+/* line 83, ../scss/app.scss */
 .fullW, .fullWH {
   max-width: 100%;
 }
 
-/* line 81, ../scss/app.scss */
+/* line 86, ../scss/app.scss */
 .fullH, .fullWH {
   height: 88vh;
 }
 
-/* line 88, ../scss/app.scss */
+/* line 93, ../scss/app.scss */
 .scrollH {
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-/* line 93, ../scss/app.scss */
-.w100, .wh100, html, body, #player #pantallas .pantalla .media_player, .progress_bar_holder, .progress_bar_holder div {
+/* line 98, ../scss/app.scss */
+.w100, .wh100, html, body, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .media_textos, .progress_bar_holder, .progress_bar_holder div {
   width: 100%;
 }
 
-/* line 96, ../scss/app.scss */
-.h100, .wh100, html, body, #player #pantallas .pantalla .media_player {
+/* line 101, ../scss/app.scss */
+.h100, .wh100, html, body, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .media_textos {
   height: 100%;
 }
 
-/* line 104, ../scss/app.scss */
+/* line 109, ../scss/app.scss */
 .fullH_primary {
   height: 85%;
 }
 
-/* line 108, ../scss/app.scss */
+/* line 113, ../scss/app.scss */
 .fullH_secondary {
   height: 15%;
 }
 
-/* line 117, ../scss/app.scss */
+/* line 122, ../scss/app.scss */
 header {
   height: 60px;
 }
@@ -9284,122 +9307,123 @@ header {
 tipografia
 
 */
-/* line 147, ../scss/app.scss */
+/* line 152, ../scss/app.scss */
 body {
   font-family: "Open Sans";
 }
 
 /*	widgets */
-/* line 153, ../scss/app.scss */
+/* line 158, ../scss/app.scss */
 .hoverLink, .progress_bar_holder .markers .marker {
   cursor: pointer;
 }
-/* line 155, ../scss/app.scss */
+/* line 160, ../scss/app.scss */
 .hoverLink:hover, .progress_bar_holder .markers .marker:hover {
   color: #ddd;
 }
 
-/* line 181, ../scss/app.scss */
+/* line 186, ../scss/app.scss */
 #narrativa {
   height: 240px;
 }
 
-/* line 186, ../scss/app.scss */
+/* line 191, ../scss/app.scss */
 .progress_bar_holder {
   position: relative;
-  border: 1px solid #222;
   background-color: #333;
   height: 30px;
   padding: 10px;
 }
-/* line 197, ../scss/app.scss */
+/* line 201, ../scss/app.scss */
 .progress_bar_holder .progress_bar {
+  border: none;
   margin: 0;
   padding: 0;
   height: 10px;
   background-color: #444;
 }
-/* line 202, ../scss/app.scss */
+/* line 207, ../scss/app.scss */
 .progress_bar_holder .progress_bar .progress {
+  border: none;
   width: 33%;
   height: 100%;
-  background-color: #000;
+  background-color: #444;
 }
-/* line 213, ../scss/app.scss */
+/* line 219, ../scss/app.scss */
 .progress_bar_holder .markers .marker {
   border-left: 2px solid #ccc;
   color: #ccc;
   width: 200px;
   height: 15px;
 }
-/* line 222, ../scss/app.scss */
+/* line 228, ../scss/app.scss */
 .progress_bar_holder .markers .marker.current {
   color: #fff;
   border-left: 2px solid #fff !important;
 }
 
-/* line 233, ../scss/app.scss */
+/* line 239, ../scss/app.scss */
 #twitter {
   color: #fff;
   height: 60px;
   background-color: #333;
 }
-/* line 235, ../scss/app.scss */
+/* line 241, ../scss/app.scss */
 #twitter > div {
   height: 60px;
 }
-/* line 240, ../scss/app.scss */
+/* line 246, ../scss/app.scss */
 #twitter div {
   padding: 0;
   margin: 0;
   background-color: #333;
   font-size: 12px;
 }
-/* line 247, ../scss/app.scss */
+/* line 253, ../scss/app.scss */
 #twitter #search .texto {
   margin: 0;
   height: 30px;
 }
-/* line 251, ../scss/app.scss */
+/* line 257, ../scss/app.scss */
 #twitter #search .boton {
   text-align: center;
   line-height: 30px;
   height: 30px;
   background-color: #222;
 }
-/* line 256, ../scss/app.scss */
+/* line 262, ../scss/app.scss */
 #twitter #search .boton:hover {
   background-color: #000;
   color: #4099ff;
 }
-/* line 263, ../scss/app.scss */
+/* line 269, ../scss/app.scss */
 #twitter #tweets img {
   max-height: 20vh;
   max-width: 100%;
 }
-/* line 269, ../scss/app.scss */
+/* line 275, ../scss/app.scss */
 #twitter #twitter_media {
   height: 90px;
 }
-/* line 272, ../scss/app.scss */
+/* line 278, ../scss/app.scss */
 #twitter .tweet {
   font-size: 14px;
 }
-/* line 277, ../scss/app.scss */
+/* line 283, ../scss/app.scss */
 #twitter #tools .boton {
   font-size: 19px;
   color: #666;
   cursor: pointer;
 }
-/* line 282, ../scss/app.scss */
+/* line 288, ../scss/app.scss */
 #twitter #tools #notify {
   cursor: default;
 }
-/* line 285, ../scss/app.scss */
+/* line 291, ../scss/app.scss */
 #twitter #tools .boton.active {
   color: #4099ff !important;
 }
-/* line 288, ../scss/app.scss */
+/* line 294, ../scss/app.scss */
 #twitter #tools #changed {
   width: 30px;
   height: 30px;
@@ -9408,35 +9432,35 @@ body {
   box-shadow: 3px 3px 0 #000;
   background-color: #222;
 }
-/* line 298, ../scss/app.scss */
+/* line 304, ../scss/app.scss */
 #twitter #tweets {
   overflow-y: auto;
 }
-/* line 300, ../scss/app.scss */
+/* line 306, ../scss/app.scss */
 #twitter #tweets .tweet {
   margin: 30px;
 }
 
-/* line 310, ../scss/app.scss */
+/* line 316, ../scss/app.scss */
 .tweet .user .name, .tweet .user .avatar {
   height: 45px;
 }
-/* line 313, ../scss/app.scss */
+/* line 319, ../scss/app.scss */
 .tweet .user .name {
   line-height: 45px;
   padding-left: 30px;
 }
 
 /* player */
-/* line 321, ../scss/app.scss */
+/* line 327, ../scss/app.scss */
 #player {
   background-color: #222;
 }
-/* line 324, ../scss/app.scss */
+/* line 330, ../scss/app.scss */
 #player #pantallas {
   position: relative;
 }
-/* line 328, ../scss/app.scss */
+/* line 334, ../scss/app.scss */
 #player #pantallas #clear {
   z-index: 999;
   width: 30px;
@@ -9445,43 +9469,49 @@ body {
   border: 1px solid #000;
   background-color: #333;
 }
-/* line 337, ../scss/app.scss */
+/* line 343, ../scss/app.scss */
 #player #pantallas .pantalla {
   background-color: #000;
   display: inline-block;
 }
-/* line 351, ../scss/app.scss */
+/* line 359, ../scss/app.scss */
+#player #pantallas .pantalla .media_textos .vcenter_content {
+  color: #fff;
+  padding: 30px;
+  font-size: 32px;
+}
+/* line 366, ../scss/app.scss */
 #player #pantallas .pantalla video {
   width: 100%    !important;
   height: auto   !important;
 }
-/* line 356, ../scss/app.scss */
+/* line 371, ../scss/app.scss */
 #player #pantallas .pantalla .tweet {
   color: #fff;
 }
-/* line 360, ../scss/app.scss */
+/* line 375, ../scss/app.scss */
 #player #pantallas .pantalla .contenido {
   background-color: #00f;
 }
-/* line 377, ../scss/app.scss */
+/* line 392, ../scss/app.scss */
 #player #pantallas .pantalla .video {
   width: 100%;
 }
-/* line 382, ../scss/app.scss */
+/* line 397, ../scss/app.scss */
 #player #pantallas .pantalla .scaler {
   transform: scale(1);
   -webkit-transition: -moz-transform 15s ease-out;
   -moz-transition: -webkit-transform 15s ease-out;
 }
 
-/* line 394, ../scss/app.scss */
+/* line 409, ../scss/app.scss */
 #twitter_media, #secuencia_media {
   overflow-x: auto;
   overflow-y: hidden;
   background-color: #111;
   height: 120px;
 }
-/* line 401, ../scss/app.scss */
+/* line 416, ../scss/app.scss */
 #twitter_media .scrollX, #secuencia_media .scrollX {
   background-color: #111;
   width: auto;
@@ -9489,7 +9519,7 @@ body {
   min-width: 100%;
   height: 120px;
 }
-/* line 409, ../scss/app.scss */
+/* line 424, ../scss/app.scss */
 #twitter_media .media, #secuencia_media .media {
   width: 120px;
   height: 120px;
@@ -9500,18 +9530,18 @@ body {
   color: #aaa;
   font-size: 9px;
 }
-/* line 418, ../scss/app.scss */
+/* line 433, ../scss/app.scss */
 #twitter_media .media img, #secuencia_media .media img {
   max-width: 100%;
   height: auto;
   max-height: 100%;
 }
-/* line 427, ../scss/app.scss */
+/* line 442, ../scss/app.scss */
 #twitter_media .media .row, #twitter_media .media .xrow, #secuencia_media .media .row, #secuencia_media .media .xrow {
   width: 80%;
   margin-left: 10%;
 }
-/* line 431, ../scss/app.scss */
+/* line 446, ../scss/app.scss */
 #twitter_media .media .screenbutton, #secuencia_media .media .screenbutton {
   height: 15px;
   border: 1px solid #999;
@@ -9521,12 +9551,12 @@ body {
   width: 30px;
   float: left;
 }
-/* line 440, ../scss/app.scss */
+/* line 455, ../scss/app.scss */
 #twitter_media .media .screenbutton:hover, #secuencia_media .media .screenbutton:hover {
   background-color: #444;
 }
 
-/* line 454, ../scss/app.scss */
+/* line 469, ../scss/app.scss */
 .media_display img {
   max-width: 30vw;
   max-height: 20vh;

@@ -6,6 +6,7 @@ $fontS: 12px;
 $fontM: 16px;
 $fontML: 19px;
 $fontL: 25px;
+$fontXL: 32px;
 
 
 
@@ -49,6 +50,10 @@ $fontL: 25px;
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+
+.vcenter_table {display:table; height:100%; width:100%; margin: 0 !important; }
+.vcenter_container {display:table-cell; vertical-align:middle; text-align:center; margin-top: 0 !important;  width: 100%; height:100%; }
+.vcenter_content {display:inline-block; }
 
 
 .fitH {
@@ -185,7 +190,6 @@ body {
 
 .progress_bar_holder{
 	position: relative;
-	border: 1px solid #222;
 	background-color: #333;
 	&,div {
 		@extend .w100;
@@ -195,14 +199,16 @@ body {
 	padding: $spacing / 3;
 	
 	.progress_bar {
+		border:none;
 		margin: 0;
 		padding: 0;
 		height: $spacing / 3;
 		background-color: #444;
 		.progress {
+			border:none;
 			width:33%;
 			height: 100%;
-			background-color: #000;
+			background-color: #444;
 		}
 	}
 
@@ -348,6 +354,15 @@ body {
 
 			}
 
+.media_textos{
+	@extend .wh100;
+	.vcenter_content {
+		color: #fff;
+		padding: $spacing;
+		font-size: $fontXL;
+
+	}
+}
 			video {
 			  width: 100%    !important;
 			  height: auto   !important;

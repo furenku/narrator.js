@@ -81,3 +81,20 @@ function wrap( index, array ) {
     if( index < 0 )
         index = array.length - 1 ;
 }
+
+
+function n(n){
+    return n > 9 ? "" + n: "0" + n;
+}
+function clog( what ){
+    console.log(what);
+}
+function h(n_,txt_){
+    return '<h'+n_+'>'+txt_+'</h'+n_+'>';
+}
+function makeDiv( id_, class_ ) {
+    return $('<div>').attr('class',class_).attr('id',id_);
+}
+function makeImg( src_ ) {
+    return $('<img>').attr('src',src_);
+}
