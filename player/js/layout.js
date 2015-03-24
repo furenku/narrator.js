@@ -39,7 +39,7 @@ function crearPantallas() {
     pantalla.width( wW ).height( wH ).css({    left: scrW, top: scrH });
     scrW = scrW + wW;
         
-    var cnt = '<div class="imagen"><img src="http://fakeimg.pl/350x350/333/aaa" alt=""></div>';
+    var cnt = '';
     $('#pantallas').append( pantalla.html( cnt ) );
 
   }

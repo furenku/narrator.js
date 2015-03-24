@@ -18,11 +18,6 @@
 <body>
 
 
-  <div id="narrativa" class="xrow">
-    <div id="secciones"></div>
-
-    <div id="secuencias"></div>
-  </div>
 
   <header class="xrow">
 

@@ -128,28 +128,59 @@ $(document).ready(function(){
 
 function abrirContenido( contenido ) {
 
-	console.log( contenido.media )
+	var result;
+	console.log( contenido.info.title )
 	if( typeof(  contenido.media ) != 'undefined' ) {
 		var num =  contenido.media.length;
+		console.log( num, contenido.media );
+		result = $('<div>');
 		for (var j = 0; j <= num; j++) {
 			if( typeof(  contenido.media[j] ) != 'undefined' ) {
-										
-				var media =  contenido.media[j];	
-				console.log( media );
 
-/*				var nombre = cnt.info.title;
-				var media = cnt.media;
-				var cntDiv = $('<div>').addClass('marker media');		
-				cntDiv.html( nombre );
-				cntDiv.click(function(){
-					abrirContenido (  contenidos[ $(this).index() ] );
-				});		
-				cntDiv.css({left:( $(window).width() / num ) * j })
-				nDiv.append( cntDiv );
-*/				
+				var mediaHolder =  contenido.media[j];								
+
+				var key = mediaHolder.tipo;
+				console.log(key);
+				for( var m = 0; m <  mediaHolder.media.length; m++) {
+					var mediaItem = mediaHolder.media[m];
+					var content;
+					content = mediaItem;
+					if( mediaItem != "" ) {
+
+						if( key === "imagenes" ) {
+							content = $('<img>').attr('src', mediaItem );
+							content = $('<a>').attr('href',mediaItem).attr('data-lightbox',contenido.info.title).attr('data-title','').html( content );												
+						}
+
+						if( key === "videos" ) {
+							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<video>').append( $('<source>').attr('src',mediaItem) ) );												
+						}
+
+						if( key === "audios" ) {
+							content = $('<a>').attr({href:mediaItem,target:'_blank'}).html( $('<audio>').append( $('<source>').attr('src',mediaItem) ) );												
+						}
+
+						if( key === "tweet_ids" ) {
+							content = $('<div>').html( mediaItem );												
+						}
+
+								
+						console.log( content );
+						result.append( $('<div>').attr("class","media_" + key + " media").html( content ) );
+					}
+
+				}
+
+
 			}
+
+			
 		}
 	}
+
+	console.log( result );
+	$('#pantallas .pantalla').eq(0).append(result);
+	
 }
 
 
