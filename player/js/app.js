@@ -20,6 +20,22 @@ $('#pantallas #clear').click(function(){
 	$('#pantallas .pantalla').html('');
 })
 
+
+$('#pantallas #clear1').click(function(){
+	$('#pantallas .pantalla').eq(0).html('');
+})
+
+
+$('#pantallas #clear2').click(function(){
+	$('#pantallas .pantalla').eq(1).html('');
+})
+
+
+$('#pantallas #clear3').click(function(){
+	$('#pantallas .pantalla').eq(2).html('');
+})
+
+
 /*
 
 var pantalla = $('#pantallas .pantalla').first();

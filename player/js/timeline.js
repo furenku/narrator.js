@@ -310,7 +310,7 @@ function abrirSeccion( seccion ) {
 				seqDiv.click(function(){
 					abrirSecuencia (  secuencias[ $(this).index() ] );
 				});		
-				seqDiv.css({left:( $(window).width() / num ) * j })
+				seqDiv.css({left:( $('#timelines').width() / num ) * j })
 				nDiv.append( seqDiv );
 				
 
@@ -335,7 +335,7 @@ function drawTimeline() {
 		seccionDiv.click(function(){
 			abrirSeccion (  n.narrativa.secciones[ $(this).index() ] );
 		});		
-		seccionDiv.css({left:( $(window).width() / num ) * i })
+		seccionDiv.css({left:( $('#timelines').width() / num ) * i })
 		nDiv.append( seccionDiv );
 	
 	}

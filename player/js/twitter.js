@@ -11,6 +11,59 @@ var prevSearch;
 
 tweets = Array();
 tweetsID = Array();
+
+
+		var pantallaIndex = 0;
+		var twitterIndex = 0;
+		
+function twitterFill(){
+	if( twitterAnimate ) {
+
+		var tweets = $('#tweetDB .tweet');
+		var tweet = tweets.eq( twitterIndex );
+
+		var pantallas = $('#pantallas .pantalla');
+		var pantalla =  pantallas.eq( pantallaIndex );
+
+		var div  = $('<div>').attr('id',"tweet_"+Math.floor(Math.random()*10000)).attr('class',"tweet contenedor");
+
+
+		var dW = pantalla.width() * 0.8;
+		var dH = pantalla.height() * 0.8;
+
+		var randW = ( dW * 0.5 * Math.random() ) + (pantalla.width() * 0.25 );
+		var randH = ( dH * 0.5 * Math.random() ) + (pantalla.height() * 0.25 );
+
+		var randY = ( dH * Math.random() ) + (pantalla.height() * 0.1 );
+		if( randY > dH - randH ) {
+			randY = dH - randH ;
+		}
+		var randX = ( dW * Math.random() ) + (pantalla.width() * 0.1 );
+		if( randX > dW - randW ) {
+			randX = dW - randW ;
+		}
+		
+		div.css({ left: randX, top: randY, fontSize: dH / 30 });
+		div.css({ border: '1px solid #444', color: "#ffffff" });
+		div.html(tweet);
+		div.animate({ opacity: 0 },8000,function(){div.remove()});
+		//div.animate({ opacity: 0, top: randY - 20, left: randX - 50 },8000,function(){div.remove()});
+		// div.addClass('scaler');
+		// div.css({ transform: 'scale(0)' });
+
+		pantalla.append( div );
+		pantallaIndex++;
+		if( pantallaIndex > pantallas.length )
+			pantallaIndex = 0;
+		
+		twitterIndex++;
+		if( twitterIndex > tweets.length )
+			twitterIndex = 0;
+	}
+
+}
+
+
 var searchTW = function(){
 	if( twitterPlay ) {
 
@@ -60,28 +113,31 @@ var searchTW = function(){
 					//$('#twitter_media .scrollX').html("");
 
 					for( i in tweets ) {
-						tweet = $('<div>').addClass("medium-12 columns tweet");
-						if( typeof(tweets[i].user) != "undefined" )
-						tweet.append( '<div class="row user"><div class="avatar small-3 medium-2 columns"><img src="' + tweets[i].user.profile_image_url +'"></div><div class="name small-9 medium-10 end columns">'+tweets[i].user.screen_name+'</div>' );					
-						tweet.append( '<div class="row date">' + moment( new Date( tweets[i].created_at)).fromNow() + '</div>' );					
-						tweet.append( '<div class="row text">' + tweets[i].text + '</div>' );					
-						tweet.append( '<div class="row media_display"></div>' );					
-						if( typeof(tweets[i].entities) != "undefined" ) {
-							
-							var media = tweets[i].entities.media ;
-							if( typeof(tweets[i].entities.media) != "undefined" ) {
-								for( j in media ) {
+						if( typeof(tweets[i]) != "undefined" ) {
+							tweet = $('<div>').addClass("medium-12 columns tweet");
 
-									if( media[j].type == "photo" ) {
+							if( typeof(tweets[i].user) != "undefined" )
+							tweet.append( '<div class="row user"><div class="avatar small-3 medium-2 columns"><img src="' + tweets[i].user.profile_image_url +'"></div><div class="name small-9 medium-10 end columns">'+tweets[i].user.screen_name+'</div>' );					
+							tweet.append( '<div class="row date">' + moment( new Date( tweets[i].created_at)).fromNow() + '</div>' );					
+							tweet.append( '<div class="row text">' + tweets[i].text + '</div>' );					
+							tweet.append( '<div class="row media_display"></div>' );					
+							if( typeof(tweets[i].entities) != "undefined" ) {
+								
+								var media = tweets[i].entities.media ;
+								if( typeof(tweets[i].entities.media) != "undefined" ) {
+									for( j in media ) {
 
-										tweet.find('.media_display').append( $('<div>').addClass('media').html(
-											$('<a>').attr('href',media[j].media_url ).html(
-											$('<img>').attr('src',media[j].media_url ) ) ) );
+										if( media[j].type == "photo" ) {
+
+											tweet.find('.media_display').append( $('<div>').addClass('media').html(
+												$('<a>').attr('href',media[j].media_url ).html(
+												$('<img>').attr('src',media[j].media_url ) ) ) );
+										}
 									}
 								}
 							}
+							$('#tweetDB').append( tweet );					
 						}
-						$('#tweetDB').append( tweet );					
 					}
 
 					for( var i = newTweets.length - 1; i>=0; i-- ) {
@@ -107,6 +163,7 @@ var searchTW = function(){
 								}
 							}
 						}
+						tweet.append( '<div class="row screenbuttons"><div class="screenbutton"></div><div class="screenbutton"></div><div class="screenbutton"></div></div>' );					
 						$('#tweets').prepend( tweet );					
 					}
 				}	
@@ -116,60 +173,31 @@ var searchTW = function(){
 					alert("new maxid: "+ max_id);
 				}
 
+				$('#twitter .screenbutton').click(function(){
+
+					var content = $(this).parent().parent();
+					
+					console.log(123);
+					var vtable = makeDiv("","vcenter_content").html( content );
+					vtable = makeDiv("","vcenter_container").html( vtable );
+					vtable = makeDiv("","vcenter_table").html( vtable );
+					content = vtable;
+					
+					var html = $('<div>').attr("class","media_tweet media").html( content );
+
+					$('#pantallas .pantalla').eq( $(this).index() ).html( html )
+				})
 
 			}
 		})
 
-		var pantallaIndex = 0;
-		var twitterIndex = 0;
-		function twitterFill(){
-			// if( twitterAnimate ) {
-				var tweets = $('#tweetDB .tweet');
-				var tweet = tweets.eq( twitterIndex );
-
-				var pantallas = $('#pantallas .pantalla');
-				var pantalla =  pantallas.eq( pantallaIndex );
-
-				var div  = $('<div>').attr('id',"tweet_"+Math.floor(Math.random()*10000)).attr('class',"tweet contenedor");
-
-
-				var dW = pantalla.width() * 0.8;
-				var dH = pantalla.height() * 0.8;
-
-				var randW = ( dW * 0.5 * Math.random() ) + (pantalla.width() * 0.25 );
-				var randH = ( dH * 0.5 * Math.random() ) + (pantalla.height() * 0.25 );
-
-				var randY = ( dH * Math.random() ) + (pantalla.height() * 0.1 );
-				if( randY > dH - randH ) {
-					randY = dH - randH ;
-				}
-				var randX = ( dW * Math.random() ) + (pantalla.width() * 0.1 );
-				if( randX > dW - randW ) {
-					randX = dW - randW ;
-				}
-				
-				div.css({ left: randX, top: randY, fontSize: dH / 30 });
-				div.css({ border: '1px solid #444', color: "#ffffff" });
-				div.html(tweet);
-				div.animate({ opacity: 0 },8000,function(){div.remove()});
-				//div.animate({ opacity: 0, top: randY - 20, left: randX - 50 },8000,function(){div.remove()});
-				// div.addClass('scaler');
-				// div.css({ transform: 'scale(0)' });
-
-				pantalla.append( div );
-				pantallaIndex++;
-				if( pantallaIndex > pantallas.length )
-					pantallaIndex = 0;
-				
-				twitterIndex++;
-				if( twitterIndex > tweets.length )
-					twitterIndex = 0;
-			}
-			clearInterval( twitterAnimation );
-			twitterAnimation = setInterval(twitterFill, 1000);
-		// }
-
+		
 	}
+
+
+	
+
+
 };
 var search = $('#search input');
 
@@ -203,11 +231,11 @@ $('#tools #animate').click(function(){
 	boton.toggleClass('active');
 	if( boton.hasClass('active') ) {
 		twitterAnimate = true;
-		console.log("anim", twitterAnimate);
 	} else {
 		clearInterval( twitterAnimation );
 		twitterAnimate = false;
 	}
+	console.log("anim", twitterAnimate);
 });
 
 
@@ -220,7 +248,15 @@ $('#search .boton').click(function(){
 	$('#twitter #tweetDB').html('');	
 	$('#twitter #tweets').html('');	
 	searchTW();
+	if( twitterPlay )
 	clearInterval( twitterSearch );
 	twitterSearch = setInterval(searchTW,12000);
+	if( twitterAnimate )
+	clearInterval( twitterAnimation );
+	twitterAnimation = setInterval(twitterFill, 1000);
+
 })
+
+
+
 //searchTW();

@@ -73,7 +73,12 @@ $fontXL: 32px;
 	 max-width:100%;
 }
 
+.xrow3 {
 
+ 	 @extend .row;
+	 @extend .mp0;
+	 max-width:33%;
+}
 .abs {
 	position: absolute;
 	left:0;
@@ -150,6 +155,7 @@ tipografia
 
 
 body {
+	background-color: #333;
 	font-family: "Open Sans";
 }
 
@@ -277,6 +283,22 @@ body {
 	}
 	.tweet {
 		font-size: 14px;
+
+		.screenbutton {
+			height: $spacing / 2;
+			border: 1px solid #999;
+			border-radius: $spacing;
+			background-color: #222;
+			margin: 0;
+			width:$spacing;
+			float: left;
+
+			&:hover {
+				background-color: #444
+			}
+		}
+
+
 	}
 
 	#tools {
@@ -311,17 +333,6 @@ body {
 }
 
 
-.tweet {
-	.user {		
-		.name, .avatar {
-			height: $spacing * 1.5;
-		}
-		.name {
-			line-height: $spacing * 1.5;
-			padding-left: $spacing;
-		}
-	}
-}
 /* player */
 
 #player {
@@ -331,14 +342,19 @@ body {
 
 		position: relative;	
 		
-		#clear {
+		#clearDiv {
 			@extend .abs;
+			top:100%;
 			z-index:999;
+			.clearbtn {
+
 			width: $spacing;
 			height: $spacing;
 			line-height: $spacing;
 			border: 1px solid #000;
 			background-color: #333;
+			float: left;
+			}
 		}
 			.pantalla {
 
@@ -354,6 +370,7 @@ body {
 
 			}
 
+.media_tweet,
 .media_textos{
 	@extend .wh100;
 	.vcenter_content {
@@ -401,6 +418,28 @@ body {
 			}
 			
 
+			.tweet {
+				padding: $spacing;
+				background-color: #333;
+				border-radius: $spacing / 3;
+					.date {
+						font-size: $fontM;
+
+					}
+					div {
+						margin-bottom: $spacing / 4;
+					}
+				.user {		
+					.name, .avatar {
+						font-size: $fontL;
+						height: $spacing * 1.5;
+					}
+					.name {
+						line-height: $spacing * 1.5;
+						padding-left: $spacing;
+					}
+				}
+			}
 
 		}
 	}

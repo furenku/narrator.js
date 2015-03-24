@@ -17,9 +17,9 @@
 
 <body>
 
-  <header class="xrow">
+  <header class="xrow3">
 
-    <div id="timelines" class="xrow">
+    <div id="timelines" class="xrow3">
       <div id="secciones_timeline">
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
@@ -70,14 +70,19 @@
 
     <div id="player" class="small-12 medium-9 large-11 columns fitH">
       <div id="pantallas">
-        <div id="clear">X</div>
+       <div id="clearDiv">
+          <div id="clear" class="clearbtn"></div>
+          <div id="clear1" class="clearbtn"></div>
+          <div id="clear2" class="clearbtn"></div>
+          <div id="clear3" class="clearbtn"></div>
+       </div>
       </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
     </div>
 
   </div> <!-- twitter_pantallas -->
 
-  <footer class="xrow">
+  <footer class="xrow3">
     
     <div id="secuencia_media" class="">
       <div class="scrollX">      
