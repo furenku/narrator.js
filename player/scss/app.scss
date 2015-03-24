@@ -404,7 +404,7 @@ body {
 		border: 1px solid black;
 		background-color: #222;
 		color:#aaa;
-		font-size: $fontS;
+		font-size: $fontXS;
 		img {
 			max-width: 100%;
 			height:auto;
@@ -412,6 +412,26 @@ body {
 		}
 
 	}
+
+	.media {
+	.row {
+		width: 80%;
+		margin-left: 10%;
+	}
+	.screenbutton {
+		height: $spacing / 2;
+		border: 1px solid #999;
+		border-radius: $spacing;
+		background-color: #222;
+		margin: 0;
+		width:$spacing;
+		float: left;
+
+		&:hover {
+			background-color: #444
+		}
+	}
+}
 
 
 }
@@ -426,3 +446,6 @@ body {
 		max-height: 20vh;
 	}
 }
+
+
+

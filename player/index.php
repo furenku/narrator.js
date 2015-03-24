@@ -17,7 +17,7 @@
 
 <body>
 
-
+<video src="http://localhost/web/IMG_0583.MOV" autoplay></video>
 
   <header class="xrow">
 

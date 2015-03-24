@@ -124,7 +124,20 @@ $(document).ready(function(){
 
 
 
+function mediaDiv( type, content ) {
 
+	var mDiv = $('<div>').attr('class','media media_' + type );
+	var scrB = $('<div>').attr("class","screenbuttons row");
+	scrB.prepend( $('<div>').attr("class","screenbutton") );
+	scrB.prepend( $('<div>').attr("class","screenbutton") );
+	scrB.prepend( $('<div>').attr("class","screenbutton") );
+	mDiv.prepend( scrB );
+	mDiv.append( $('<div>').attr("class","tipo row") );
+	mDiv.append( $('<div>').attr("class","contenido row").html( content ) );
+
+	return mDiv;
+
+}
 
 function abrirContenido( contenido ) {
 
@@ -166,6 +179,7 @@ function abrirContenido( contenido ) {
 
 								
 						console.log( content );
+						
 						result.append( $('<div>').attr("class","media_" + key + " media").html( content ) );
 					}
 
@@ -201,8 +215,8 @@ function abrirSecuencia( secuencia ) {
 				
 				var nombre = cnt.info.title;
 				var media = cnt.media;
-				var cntDiv = $('<div>').addClass('marker media');		
-				cntDiv.html( nombre );
+				var cntDiv = mediaDiv("contenido",nombre);//$('<div>').addClass('marker media');		
+				
 				cntDiv.click(function(){
 					abrirContenido (  contenidos[ $(this).index() ] );
 				});		
