@@ -17,6 +17,10 @@
 
 <body>
   
+  <div id="narrativa" class="xrow">
+    
+  </div>
+
   <header class="xrow">
 
     <div id="timelines" class="xrow">
@@ -56,10 +60,10 @@
         <div  class="boton medium-3 columns"><span class="fa fa-search"></span></div>
       </div>
       <div id="tools" class="small-12 columns text-right">
-        <div  class="boton medium-3 columns active"><span class="fa fa-search"></span></div>
-        <div  class="boton medium-3 columns"><span class="fa fa-user"></span></div>
-        <div  class="boton medium-3 columns"><span class="fa fa-pencil"></span></div>
-        <div id="notify"  class="boton medium-3 columns"><span class="fa fa-twitter"></span></div>
+        <div  class="boton medium-6 large-3 columns active"><span class="fa fa-search"></span></div>
+        <div  class="boton medium-6 large-3 columns"><span class="fa fa-user"></span></div>
+        <div  class="boton medium-6 large-3 columns"><span class="fa fa-pencil"></span></div>
+        <div id="notify"  class="boton medium-6 large-3 columns"><span class="fa fa-twitter"></span></div>
       </div>
       <div id="tweets" class="medium-12 columns fillH"></div>
       <div id="tweetDB" class="hidden"></div>

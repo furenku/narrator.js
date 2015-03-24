@@ -72,3 +72,12 @@ function keysrt(key,desc) {
    return desc ? ~~(a[key] < b[key]) : ~~(a[key] > b[key]);
   }
 }
+
+
+
+function wrap( index, array ) {
+    if( index > array.length )
+        index = 0;
+    if( index < 0 )
+        index = array.length - 1 ;
+}

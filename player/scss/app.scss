@@ -157,6 +157,32 @@ body {
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#narrativa {
+	height: $spacing * 8;
+}
+
+
 .progress_bar_holder{
 	position: relative;
 	border: 1px solid #222;
@@ -279,7 +305,17 @@ body {
 }
 
 
-
+.tweet {
+	.user {		
+		.name, .avatar {
+			height: $spacing * 1.5;
+		}
+		.name {
+			line-height: $spacing * 1.5;
+			padding-left: $spacing;
+		}
+	}
+}
 /* player */
 
 #player {

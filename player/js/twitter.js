@@ -7,6 +7,8 @@ var loaded = false;
 var prevSearch;
 
 
+tweets = Array();
+tweetsID = Array();
 var searchTW = function(){
 
 	var search = $('#search input').val();
@@ -18,10 +20,7 @@ var searchTW = function(){
 	search = search.replace("ó" ,"o");
 	search = search.replace("ú" ,"u");
 	search = search.replace("ñ" ,"n");
-	if( search !== prevSearch) {
-		tweets = Array();
-		tweetsID = Array();
-	}
+	
 	$.ajax({
 		url:'http://localhost/web/twitterServer/search.php',
 		datatype:'jsonp',
@@ -56,8 +55,11 @@ var searchTW = function(){
 				})
 				//$('#tweetDB').html('');
 				//$('#twitter_media .scrollX').html("");
+				console.log(tweets[0])
 				for( i in tweets ) {
 					tweet = $('<div>').addClass("medium-12 columns tweet");
+					if( typeof(tweets[i].user) != "undefined" )
+					tweet.append( '<div class="row user"><div class="avatar small-3 medium-2 columns"><img src="' + tweets[i].user.profile_image_url +'"></div><div class="name small-9 medium-10 end columns">'+tweets[i].user.screen_name+'</div>' );					
 					tweet.append( '<div class="row date">' + moment( new Date( tweets[i].created_at)).fromNow() + '</div>' );					
 					tweet.append( '<div class="row text">' + tweets[i].text + '</div>' );					
 					tweet.append( '<div class="row media_display"></div>' );					
@@ -82,6 +84,8 @@ var searchTW = function(){
 				for( var i = newTweets.length - 1; i>=0; i-- ) {
 					var newTweet = newTweets[ i ];
 					tweet = $('<div>').addClass("medium-12 columns tweet");
+					if( typeof(newTweet.user) != "undefined" )
+					tweet.append( '<div class="row user"><div class="avatar small-4 medium-3 large-3 columns"><img src="' + newTweets[i].user.profile_image_url +'"></div><div class="name small-8 medium-9 large-9 columns">'+newTweets[i].user.screen_name+'</div>' );					
 					tweet.append( '<div class="row date">' + moment( new Date( newTweet.created_at)).fromNow() + '</div>' );					
 					tweet.append( '<div class="row text">' + newTweet.text + '</div>' );					
 					tweet.append( '<div class="row media_display"></div>' );					
@@ -177,8 +181,12 @@ $('#tools .boton').click(function(){
 
 var twitterAnimation;
 $('#search .boton').click(function(){
+	
+	tweets = Array();
+	tweetsID = Array();
+	$('#twitter #tweetDB').html('');	
+	$('#twitter #tweets').html('');	
 	searchTW();
-	$('#twitter #tweets').html('');
 	setInterval(searchTW,12000);
 })
 //searchTW();
