@@ -9231,7 +9231,7 @@ th.hide-for-touch {
 }
 
 /* line 72, ../scss/app.scss */
-.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas .pantalla, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
+.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clear, #player #pantallas .pantalla, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
   position: absolute;
   left: 0;
   top: 0;
@@ -9329,7 +9329,7 @@ body {
 .progress_bar_holder .markers .marker {
   border-left: 2px solid #ccc;
   color: #ccc;
-  width: 3px;
+  width: 200px;
   height: 15px;
 }
 /* line 222, ../scss/app.scss */
@@ -9437,43 +9437,54 @@ body {
   position: relative;
 }
 /* line 328, ../scss/app.scss */
+#player #pantallas #clear {
+  z-index: 999;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #000;
+  background-color: #333;
+}
+/* line 337, ../scss/app.scss */
 #player #pantallas .pantalla {
   background-color: #000;
   display: inline-block;
 }
-/* line 337, ../scss/app.scss */
+/* line 346, ../scss/app.scss */
 #player #pantallas .pantalla .tweet {
   color: #fff;
 }
-/* line 341, ../scss/app.scss */
+/* line 350, ../scss/app.scss */
 #player #pantallas .pantalla .contenido {
   background-color: #00f;
 }
-/* line 358, ../scss/app.scss */
+/* line 367, ../scss/app.scss */
 #player #pantallas .pantalla .video {
   width: 100%;
 }
-/* line 363, ../scss/app.scss */
+/* line 372, ../scss/app.scss */
 #player #pantallas .pantalla .scaler {
   transform: scale(1);
   -webkit-transition: -moz-transform 15s ease-out;
   -moz-transition: -webkit-transform 15s ease-out;
 }
 
-/* line 375, ../scss/app.scss */
+/* line 384, ../scss/app.scss */
 #twitter_media, #secuencia_media {
   overflow-x: auto;
   overflow-y: hidden;
+  background-color: #111;
   height: 120px;
 }
-/* line 381, ../scss/app.scss */
+/* line 391, ../scss/app.scss */
 #twitter_media .scrollX, #secuencia_media .scrollX {
+  background-color: #111;
   width: auto;
   display: block;
   min-width: 100%;
   height: 120px;
 }
-/* line 388, ../scss/app.scss */
+/* line 399, ../scss/app.scss */
 #twitter_media .media, #secuencia_media .media {
   width: 120px;
   height: 120px;
@@ -9482,14 +9493,14 @@ body {
   border: 1px solid black;
   background-color: #222;
 }
-/* line 396, ../scss/app.scss */
+/* line 407, ../scss/app.scss */
 #twitter_media .media img, #secuencia_media .media img {
   max-width: 100%;
   height: auto;
   max-height: 100%;
 }
 
-/* line 412, ../scss/app.scss */
+/* line 423, ../scss/app.scss */
 .media_display img {
   max-width: 30vw;
   max-height: 20vh;

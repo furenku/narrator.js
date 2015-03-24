@@ -14,6 +14,12 @@ fillH();
 crearPantallas();
 mediaScroll();
 timeline();
+
+
+$('#pantallas #clear').click(function(){
+	$('#pantallas .pantalla').html('');
+})
+
 /*
 
 var pantalla = $('#pantallas .pantalla').first();

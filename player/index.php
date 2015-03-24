@@ -16,15 +16,18 @@
 </head>
 
 <body>
-  
+
+
   <div id="narrativa" class="xrow">
-    
+    <div id="secciones"></div>
+
+    <div id="secuencias"></div>
   </div>
 
   <header class="xrow">
 
     <div id="timelines" class="xrow">
-      <div id="player_main_timeline">
+      <div id="secciones_timeline">
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
@@ -35,7 +38,7 @@
         </div>
 
       </div>
-      <div id="player_section_timeline">
+      <div id="secuencias_timeline">
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
@@ -71,7 +74,9 @@
     </div>
 
     <div id="player" class="small-12 medium-9 large-11 columns fitH">
-      <div id="pantallas"></div>
+      <div id="pantallas">
+        <div id="clear">X</div>
+      </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
     </div>
 
@@ -81,14 +86,7 @@
     
     <div id="secuencia_media" class="">
       <div class="scrollX">      
-        <?php 
-        for($i=0;$i<100;$i++) {
-        ?>
-
-        <div class="media"><img src="http://fakeimg.pl/150x150/333/aaa" alt=""></div>
-
-        <?php } ?>
-       
+        
       </div>
     </div>
   </footer>

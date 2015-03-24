@@ -66,10 +66,10 @@ function Narrator() {
 	
 	this.addSection = function( seccion ) {
 		// calcular duracion:
-		console.log( "IMPLEMENTAR: duracion real");
+		//console.log( "IMPLEMENTAR: duracion real");
 
-		var duracion = 5000;
-		seccion.duracion = duracion;
+		//var duracion = 5000;
+		//seccion.duracion = duracion;
 		Clase.narrativa.secciones.push( seccion );
 	}
 
@@ -77,91 +77,164 @@ function Narrator() {
 }
 
 
+var n;
+$(document).ready(function(){
 
 
 
-var n = Narrator();
+	n = Narrator();
 
+	var a = Array();
 
+	$.ajax({
+		url: 'http://localhost/web/A19/db',
+		dataType: 'json',
+		success: function( data ) {
+			
+			for(var i=0; i < data.length; i++) {
+				var seccion = data[i];		
 
-$.ajax({
-	url: 'http://localhost/web/A19/db',
-	dataType: 'json',
-	success: function( data ) {
+				if( typeof( seccion.secuencias ) != "undefined" ) {
 
-		for(i in data) {
-
-			var seccion = data[i];		
-			if( typeof( seccion.secuencias ) != "undefined" ) {
-				if( seccion.secuencias.length > 0 ) {
-					
-					n.narrativa.secciones.push( seccion );	
-
-						seqDiv.append( h( 6, "inicio: "+ Math.floor( secuencias[j].ms / 60 ) + ":" + n( secuencias[j].ms % 60 )) );
-						seqDiv.append( h( 6, "duracion: "+ Math.floor( secuencias[j].duracion / 60000 ) + ":" + n( (secuencias[j].duracion/1000) % 60 )) );
-
-
+					n.narrativa.secciones.push(seccion);	
+					console.log( seccion );
 				}
-			}
-
-			/*
-			for(j in seccion.secuencias ) {
-				var secuencia = seccion.secuencias[j];
-				console.log( seccion.title, secuencia.title, secuencia );
-				doMedia( function(x){console.log("do:",x)},secuencia );
-			}
-			*/
-		}
-
-
-		drawTimeline();
-
+	/*		
+	seqDiv.append( h( 6, "inicio: "+ Math.floor( secuencias[j].ms / 60 ) + ":" + n( secuencias[j].ms % 60 )) );
+	seqDiv.append( h( 6, "duracion: "+ Math.floor( secuencias[j].duracion / 60000 ) + ":" + n( (secuencias[j].duracion/1000) % 60 )) );
+	*/
+			
+	/*
+	for(j in seccion.secuencias ) {
+		var secuencia = seccion.secuencias[j];
+		console.log( seccion.title, secuencia.title, secuencia );
+		doMedia( function(x){console.log("do:",x)},secuencia );
 	}
-});
+	*/
+			}
+			drawTimeline();
+
+		}
+	});
+
+
+
+})
 
 
 
 
 
+
+function abrirContenido( contenido ) {
+
+	console.log( contenido.media )
+	if( typeof(  contenido.media ) != 'undefined' ) {
+		var num =  contenido.media.length;
+		for (var j = 0; j <= num; j++) {
+			if( typeof(  contenido.media[j] ) != 'undefined' ) {
+										
+				var media =  contenido.media[j];	
+				console.log( media );
+
+/*				var nombre = cnt.info.title;
+				var media = cnt.media;
+				var cntDiv = $('<div>').addClass('marker media');		
+				cntDiv.html( nombre );
+				cntDiv.click(function(){
+					abrirContenido (  contenidos[ $(this).index() ] );
+				});		
+				cntDiv.css({left:( $(window).width() / num ) * j })
+				nDiv.append( cntDiv );
+*/				
+			}
+		}
+	}
+}
+
+
+
+
+
+function abrirSecuencia( secuencia ) {
+
+	var nDiv = $('#secuencia_media .scrollX');
+	nDiv.html('');
+	var contenidos = secuencia.contenidos;
+	if( typeof( contenidos ) != 'undefined' ) {
+		var num = contenidos.length;
+		for (var j = 0; j <= num; j++) {
+			if( typeof( contenidos[j] ) != 'undefined' ) {
+										
+				var cnt = contenidos[j];	
+				
+				var nombre = cnt.info.title;
+				var media = cnt.media;
+				var cntDiv = $('<div>').addClass('marker media');		
+				cntDiv.html( nombre );
+				cntDiv.click(function(){
+					abrirContenido (  contenidos[ $(this).index() ] );
+				});		
+				cntDiv.css({left:( $(window).width() / num ) * j })
+				nDiv.append( cntDiv );
+				
+			}
+		}
+	}
+
+}
 
 
 function abrirSeccion( seccion ) {
 
-		for (var j = 0; j <= secuencias.length; j++) {
+	var nDiv = $('#secuencias_timeline .markers');
+	nDiv.html('');
+	var secuencias = seccion.secuencias;
+	if( typeof( secuencias ) != 'undefined' ) {
+		var num = secuencias.length;
+		for (var j = 0; j <= num; j++) {
 			if( typeof( secuencias[j] ) != 'undefined' ) {
-				console.log( secuencias[j] )
+				
+
+						
+				var seq = secuencias[j];	
+				var nombre = seq.title;
+
+				var seqDiv = $('<div>').addClass('marker secuencia');		
+				seqDiv.html( nombre );
+				seqDiv.click(function(){
+					abrirSecuencia (  secuencias[ $(this).index() ] );
+				});		
+				seqDiv.css({left:( $(window).width() / num ) * j })
+				nDiv.append( seqDiv );
+				
+
 			}
 		}
-
+	}
 
 }
 
 
 function drawTimeline() {
 	
-	var nDiv = $('#narrativa');
-
-	for( i in n.narrativa.secciones ) {
-
-
-		var seccion = n.narrativa.secciones[i];
-		
 	
+	var nDiv = $('#secciones_timeline .markers');
+	var num = n.narrativa.secciones.length;
+	for( var i = 0; i < num; i++ ) {
+
+		var seccion = n.narrativa.secciones[i];	
 		var nombre = seccion.title;
-		
 		var secuencias = seccion.secuencias;
-
-		
-		
-		var seccionDiv = $('<div>').addClass('seccion');
-		
-		seccionDiv.append( nombre );
-
+		var seccionDiv = $('<div>').addClass('marker seccion').html( n.narrativa.secciones[i].title );		
 		seccionDiv.click(function(){
-			abrirSeccion ( seccion );
-		});
-		
+			abrirSeccion (  n.narrativa.secciones[ $(this).index() ] );
+		});		
+		seccionDiv.css({left:( $(window).width() / num ) * i })
 		nDiv.append( seccionDiv );
 	
 	}
+
+
+
 }
