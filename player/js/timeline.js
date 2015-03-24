@@ -139,6 +139,20 @@ function mediaDiv( type, content ) {
 
 }
 
+
+function onPlay(event) {
+	var player = this.p;
+	console.log(player)
+}
+
+function onPause(event) {
+	var player = this.p;
+	player.clearVideo()
+
+	// player.css({opacity:0});
+}
+
+
 function abrirContenido( contenido, i ) {
 	var pantalla = $('#pantallas .pantalla').eq(i);
 	var result;
@@ -174,6 +188,35 @@ function abrirContenido( contenido, i ) {
 
 						if( key === "tweet_ids" ) {
 							content = $('<div>').html( mediaItem );												
+						}
+
+						if( key === "urls" ) {
+							console.log( "url" );
+
+
+							var url = mediaItem.split("=")[1];
+							
+							var vd = $('<div>').addClass('video');
+							pantalla.append( vd );
+							//vcenter(vd,pantalla)
+							vd.player({
+								video: url,
+								width: pantalla.width(),
+								height: ( pantalla.width() / 1.77 ),
+								playerVars: { 
+									autoload: true,
+									autoplay: true,
+									start: 60,
+									controls: 0
+								},
+								events: {
+									play: onPlay,
+									stop: onPause,
+									end: onPause
+								}    
+							});
+
+							content = vd;												
 						}
 
 								
