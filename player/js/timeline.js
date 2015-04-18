@@ -29,10 +29,18 @@ function Seccion(){
 	var secuenciaActual = -1;
 
 	var Clase = this;
+
+	this.ms =                     0;
+	this.finalizada = 0;
+	this.play = function() {
+		ms++;
+	}
 	
 	this.siguienteSecuencia = function() {
 		Clase.abrirSecuencia( secuenciaActual );
 		secuenciaActual++;
+		if( secuenciaActual >= Clase.secuencias.length ) 
+			this.finalizada = true;
 		wrap( secuenciaActual, Clase.secuencias );
 	}
 	this.anteriorSecuencia = function() {
@@ -61,6 +69,27 @@ function Narrator() {
 	this.narrativa = Narrativa();
 	
 	var Clase = this;
+
+	this.play = function() {
+		ms++;
+	}
+	
+	this.siguienteSeccion = function() {
+
+		Clase.abrirSeccion( seccionActual );
+		seccionActual++;
+		if( seccionActual >= Clase.seccions.length ) 
+			this.finalizada = true;
+		wrap( seccionActual, Clase.seccions );
+
+	}
+	this.anteriorSeccion = function() {
+		
+		Clase.abrirSeccion( seccionActual );
+		seccionActual--;
+		wrap( seccionActual, Clase.seccions );
+				
+	}
 
 	this.playSection = function() {}
 	

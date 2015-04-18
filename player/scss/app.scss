@@ -51,6 +51,17 @@ $fontXL: 32px;
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
+
+/******** HTML ********/
+
+header {
+
+}
+footer {
+
+}
+
+
 .vcenter_table {display:table; height:100%; width:100%; margin: 0 !important; }
 .vcenter_container {display:table-cell; vertical-align:middle; text-align:center; margin-top: 0 !important;  width: 100%; height:100%; }
 .vcenter_content {display:inline-block; }
@@ -118,24 +129,6 @@ $fontXL: 32px;
 .fullH_secondary {
 	height: 15%;
 }
-
-
-#header,#footer {
-	
-}
-
-header {
-	height: $spacing * 2;
-
-}
-footer {
-	
-	&, div {
-	// height: $spacing;
-
-	}
-}
-
 
 
 /*  html  */
@@ -244,62 +237,60 @@ body {
 
 #twitter {
 	color: #fff;
-	&>div{
-		height: $spacing * 2;		
-	}
-	height: $spacing * 2;		
-	background-color: #333;
-	div {
+	// &>div{
+	// 	height: $spacing * 2;		
+	// }
+	// height: $spacing * 2;		
+	// background-color: #333;
+	// div {
 
-		padding: 0;
-		margin: 0;
-		background-color: #333;
-		font-size: $fontS;
-	}
-	#search .texto {
-		margin: 0;
-		height: $spacing;
-	}
-	#search .boton {
-		text-align: center;
-		line-height: $spacing;
-		height: $spacing;
-		background-color: #222;
-		&:hover{
-			background-color: #000;
-			color:#4099ff;
-		}
-	}
+	// 	padding: 0;
+	// 	margin: 0;
+	// 	background-color: #333;
+	// 	font-size: $fontS;
+	// }
+	// #search .texto {
+	// 	margin: 0;
+	// 	height: $spacing;
+	// }
+	// #search .boton {
+	// 	text-align: center;
+	// 	line-height: $spacing;
+	// 	height: $spacing;
+	// 	background-color: #222;
+	// 	&:hover{
+	// 		background-color: #000;
+	// 		color:#4099ff;
+	// 	}
+	// }
 
-	#tweets {
-		img {
-			max-height: 20vh;
-			max-width: 100%;
-		}
-	}
+	// #tweets {
+	// 	img {
+	// 		max-height: 20vh;
+	// 		max-width: 100%;
+	// 	}
+	// }
 
 	#twitter_media {
 		height: $spacing * 3;
 	}
-	.tweet {
-		font-size: 14px;
+	.toggle {
 
-		.screenbutton {
-			height: $spacing / 2;
-			border: 1px solid #999;
-			border-radius: $spacing;
-			background-color: #222;
-			margin: 0;
-			width:$spacing;
-			float: left;
+		background-color: #444;
 
-			&:hover {
-				background-color: #444
-			}
+		&.on {
+			background-color: #888;
 		}
-
-
 	}
+	button {
+		@extend .toggle;
+
+		border-radius: $spacing / 3;
+		padding: $spacing / 4;
+		float: left;
+		font-size: $fontS;
+	}
+	
 
 	#tools {
 		.boton {
@@ -324,9 +315,33 @@ body {
 	}
 
 	#tweets {
+
 		overflow-y: auto;
+		
 		.tweet {
+
 			margin: $spacing;
+		
+			font-size: 14px;
+
+			.screenbutton {
+
+				width:$spacing;
+				height: $spacing / 2;
+				
+				border: 1px solid #999;
+				border-radius: $spacing;
+
+				background-color: #222;
+				
+				margin: 0;
+				float: left;
+
+				&:hover {
+					background-color: #444
+				}
+				
+			}
 		}
 	}
 

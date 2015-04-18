@@ -1,48 +1,43 @@
-      
+var wW = $(window).width();
+var wH = $(window).height();
 
 
 function crearPantallas() {
 
+  var pW = wW / 2;
+  var pH = wH / 2;
   var pantallas = Array();
-  pantallas.push({name:"sim_1",width:300,height:300});
+  pantallas.push({name:"A",width: pW,height:pH});
+  pantallas.push({name:"B",width: pW,height:pH});
+  
+  /*
   pantallas.push({name:"sim_2",width:300,height:300});
   pantallas.push({name:"sim_3",width:300,height:300});
+  */
 
   var scrW = 0;
   var scrH = 0;
 
 
-  for(i in pantallas) {
+    for(i in pantallas) {
 
-    var pantalla = $('<div>').addClass("pantalla").attr('id',pantallas[i].name );
-    var realW = scrW;
+      var pantalla = $('<div>');
+      pantalla.addClass("pantalla");
+      pantalla.attr('id', "pantalla_" + pantallas[i].name );
+      
+      var realW = scrW;
 
+      pantalla.width( pantallas[i].width ).height( pantallas[i].height ).css({    left: scrW, top: scrH });
 
-    var wW;
-    var wH;
-
-    if( $(window).width() > 1200 ) {
-
-      wW = $(window).width() / pantallas.length;
-      if( i == 0 )
-        wW -= $('#twitter').width();
-      wH = fitH;
-    }
-    else {
-
-      wW = ( $(window).width() - $('#twitter').width() ) / pantallas.length;
-      wH =  wW / (16/9);
-      scrH = ( fitH - wH ) / 2;
+      scrW = scrW + pantallas[i].width;
+          
+      var cnt = '';
+      
+      $('#pantallas').append( pantalla.html( cnt ) );
 
     }
 
-    pantalla.width( wW ).height( wH ).css({    left: scrW, top: scrH });
-    scrW = scrW + wW;
-        
-    var cnt = '';
-    $('#pantallas').append( pantalla.html( cnt ) );
-
-  }
+  
 
 }
 
