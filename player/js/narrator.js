@@ -2,8 +2,7 @@ $.when(
     $.getScript( "js/narrator_utils.js" ),
     $.getScript( "js/narrator_base.js" ),
     $.getScript( "js/narrator_media.js" ),
-    $.getScript( "js/narrator_content.js" ),
-    $.getScript( "js/narrator_sequence.js" ),
+    $.getScript( "js/narrator_structures.js" ),
     $.Deferred(function( deferred ){
         $( deferred.resolve );
     })
@@ -25,12 +24,20 @@ $.when(
 	c.addItem( m );
 	
 
-	var l = new ElementList( "" );
+	q = new Sequence( "seq1" );
+	q.addItem( c );
 
-	l.addItem( 1 );
-	l.addItem( 2 );
+	s = new Section( "section1" );
+	s.addItem( q );
 
+	n = new Narrative( "n1" );
+	n.addItem( s );
+
+
+	console.log("CHECK:", n.next().next().next().next() );
 //	console.log( l.items );
+
+/*
 	console.log( c.next() );
 	console.log( c.next() );
 	console.log( c.next() );
@@ -52,7 +59,7 @@ $.when(
 	console.log( c.previous() );
 	console.log( c.previous() );
 	console.log( c.previous() );
-	
+*/	
 
 /*
 	console.log( l.getItem(0) );

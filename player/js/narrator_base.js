@@ -25,7 +25,7 @@ Element.prototype.getType = function(){
 ElementList = function( name_ ) {
 	Element.call(this, name_);
 	this.items = [];
-	this.currentItem = -1;
+	this.currentItem = 0;
 	this.loop = false;
 	this.started = false;
 	this.done = false;
@@ -67,7 +67,7 @@ ElementList.prototype.next = function() {
 		this.currentItem = wrap( this.currentItem, this.items );
 	} 
 	else {
-		if( this.currentItem > this.items.length - 1 ) {
+		if( this.currentItem > this.items.length ) {
 			this.done = true;
 			this.currentItem = this.items.length - 1;
 		}

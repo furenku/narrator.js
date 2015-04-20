@@ -80,7 +80,7 @@
     <script src="js/layout.js"></script>
     <script src="js/app.js"></script>
     <script src="js/twitter.js"></script>
-    <script src="js/timeline.js"></script>
+    <!--<script src="js/timeline.js"></script>-->
     <script src="js/narrator.js"></script>
     <script>
 
