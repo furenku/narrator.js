@@ -25,8 +25,9 @@ Element.prototype.getType = function(){
 ElementList = function( name_ ) {
 	Element.call(this, name_);
 	this.items = [];
-	this.currentItem = 0;
+	this.currentItem = -1;
 	this.loop = false;
+	this.started = false;
 	this.done = false;
 }
 
@@ -52,21 +53,56 @@ ElementList.prototype.getItems = function() {
 
 ElementList.prototype.next = function() {
 	
-	var item = this.items[ this.currentItem ];
+	var item;
 	
+	if( this.currentItem in this.items ) {
+		this.started = true;
+		item = this.items[ this.currentItem ];
+	}
+
+	
+	this.currentItem++;
+
 	if( this.loop) {
 		this.currentItem = wrap( this.currentItem, this.items );
 	} 
 	else {
-		if( this.currentItem >= this.items.length ) {
+		if( this.currentItem > this.items.length - 1 ) {
 			this.done = true;
+			this.currentItem = this.items.length - 1;
 		}
+	
 	}
-	this.currentItem++;
 
 	if( ! this.done )
 		return item;
 	else 
 		return "done";
+	
+}
+
+ElementList.prototype.previous = function() {
+	
+	var item;
+
+	if( this.currentItem in this.items ) {
+		this.started = true;
+		item = this.items[ this.currentItem ];
+	}
+	
+	if( this.loop) {
+		this.currentItem = wrap( this.currentItem, this.items );
+	} 
+	else {
+		if( this.currentItem < 0 ) {
+			this.started = false;
+		}
+	}
+	this.currentItem--;
+
+	if( this.started )
+		return item;
+	else 
+		return "not started";
 	
 }
