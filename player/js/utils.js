@@ -75,11 +75,17 @@ function keysrt(key,desc) {
 
 
 
-function wrap( index, array ) {
-    if( index > array.length )
+function wrap( index_, array_ ) {
+    
+    var index;
+
+    if( index_ > array_.length )
         index = 0;
-    if( index < 0 )
-        index = array.length - 1 ;
+    if( index_ < 0 )
+        index = array_.length - 1 ;
+    
+    return index;
+
 }
 
 

@@ -328,9 +328,7 @@ function abrirSeccion( seccion ) {
 		var num = secuencias.length;
 		for (var j = 0; j <= num; j++) {
 			if( typeof( secuencias[j] ) != 'undefined' ) {
-				
-
-						
+										
 				var seq = secuencias[j];	
 				var nombre = seq.title;
 
