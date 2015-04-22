@@ -4,6 +4,9 @@ Narrator = function() {
 	
 	this.playing = false;
 	this.playhead = 0;
+
+	gui = false;
+
 	this.play = function() {
 		this.playing = true;
 		console.log( "play" );
@@ -19,18 +22,19 @@ Narrator = function() {
 	}
 	this.rew = function() {
 		this.playhead = wrap( this.playhead - 1, this.n.items );
-		console.log( "rew", this.playhead );
+		this.jump( this.playhead )
 	}
 	this.fwd = function() {
 		this.playhead = wrap( this.playhead + 1, this.n.items );		
-		console.log( "fwd", this.playhead );
+		this.jump( this.playhead )
 	}
 	this.jump = function( index ) {
-		console.log( "rew", index );
+		console.log( "jump", this.n.getItem( index ) );
 	}
 
 	this.addSection = function( section ) {		
-		this.n.addItem( section );
+		if( section.getType() === "section")
+			this.n.addItem( section );
 	}
 
 

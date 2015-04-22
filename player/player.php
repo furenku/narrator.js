@@ -20,7 +20,14 @@
 <body>
 
   <header class="xrow">
-
+    <div id="header_controles">
+      <button class="control"><span class="fa fa-play"></span></button>
+      <button class="control"><span class="fa fa-stop"></span></button>
+      <button class="control"><span class="fa fa-pause"></span></button>
+      <button class="control"><span class="fa fa-backward"></span></button>
+      <button class="control"><span class="fa fa-forward"></span></button>
+      <button class="control"></button>
+    </div>
     <div id="timelines" class="xrow hidden">
       <div id="secciones_timeline">
         <div class="progress_bar_holder">     
@@ -46,7 +53,7 @@
       </div>
     </div> <!-- #timelines -->
   </header>
-
+  
   <div id="twitter_pantallas" class="xrow">
     
     <div id="twitter" class="fitH hide-for-small medium-3 large-1 columns">

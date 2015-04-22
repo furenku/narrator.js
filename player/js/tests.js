@@ -1,3 +1,30 @@
+content_tests = function() {
+
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	console.log( c.next() );
+	
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+	console.log( c.previous() );
+}
+
+
+structure_tests = function(){
 
 	c = new Content( "tst_cnt" );
 
@@ -16,53 +43,35 @@
 	
 	n = new Narrator();
 
-	for(var i = 0; i<10; i++) {
+	n.gui = new NarratorGUI();
+	n.gui.setupGUI();
+
+	for(var i = 0; i<3; i++) {
 		s = new Section( "section" + ( i + 1 ) );
 
-		for(var j = 0; j<10; j++) {
+		for(var j = 0; j<3; j++) {
 			q = new Sequence( "seq" + ( j + 1 ) );
 			q.addItem( c ); 
 			s.addItem( q );
 		}
 		n.addSection( s );
 	}
+
+}
+
+
+
+
+transport_tests = function() {
 	n.play();
-	
-/*
+	n.pause();
+	n.stop();
 
-*/		
+	for(var i = 0; i<10; i++) {
+		n.fwd();
+	}
+	for(var i = 0; i<10; i++) {
+		n.rew();
+	}
 
-//	console.log("CHECK:", n.next().next().next().next() );
-//	console.log( l.items );
-
-/*
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	console.log( c.next() );
-	
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-	console.log( c.previous() );
-*/	
-
-/*
-	console.log( l.getItem(0) );
-	console.log( l.getItem(3) );
-	console.log( l.getItems() );
-*/
-
-//	console.log( c.getMedia() )
+}
