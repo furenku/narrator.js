@@ -1,3 +1,6 @@
+var n;
+
+
 $.when(
     $.getScript( "js/narrator_utils.js" ),
     $.getScript( "js/narrator_base.js" ),
@@ -6,11 +9,19 @@ $.when(
     $.getScript( "js/narrator_controller.js" ),
     $.getScript( "js/narrator_gui.js" ),
     $.getScript( "js/tests.js" ),
-    $.getScript( "js/test.js" ),
+    //$.getScript( "js/test.js" ),
     $.Deferred(function( deferred ){
         $( deferred.resolve );
     })
 ).done(function(){
+
+
+    n = new Narrator();
+
+    
+
+    n.loadDB();
+
 
 	console.log("NARRATOR READY!")
 

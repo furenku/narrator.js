@@ -41,10 +41,9 @@ structure_tests = function(){
 	m = new Tweet( "tstTweet" ); m.setMedia( "Tweet!" );
 	c.addItem( m );
 	
-	n = new Narrator();
 
-	n.gui = new NarratorGUI();
-	n.gui.setupGUI();
+
+	//var sections = [];
 
 	for(var i = 0; i<3; i++) {
 		s = new Section( "section" + ( i + 1 ) );
@@ -53,10 +52,11 @@ structure_tests = function(){
 			q = new Sequence( "seq" + ( j + 1 ) );
 			q.addItem( c ); 
 			s.addItem( q );
+	//		sections.push( { name: s.name, image: s.image });
 		}
 		n.addSection( s );
 	}
-
+	
 }
 
 

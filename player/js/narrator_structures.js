@@ -76,6 +76,12 @@ inheritPrototype( Narrative, ElementList );
 
 Narrative.prototype.next = function() {	
 	var n = ElementList.prototype.next.apply(this);
+	if( n!="done" && n!=false) {
+		
+	} 
+	else {
+
+	}
 	//console.log("Narrative NEXT::::", n.next());
 	return n;
 }

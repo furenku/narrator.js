@@ -20,16 +20,16 @@
 <body>
 
   <header class="xrow">
-    <div id="header_controles">
+    <div id="header_controles" class="w100 text-center">
       <button class="control"><span class="fa fa-play"></span></button>
       <button class="control"><span class="fa fa-stop"></span></button>
       <button class="control"><span class="fa fa-pause"></span></button>
       <button class="control"><span class="fa fa-backward"></span></button>
-      <button class="control"><span class="fa fa-forward"></span></button>
-      <button class="control"></button>
+      <button class="control"><span class="fa fa-forward"></span></button>      
     </div>
-    <div id="timelines" class="xrow hidden">
-      <div id="secciones_timeline">
+
+    <div id="timelines" class="xrow">
+      <div id="timeline_secciones" class="w100">
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
@@ -40,7 +40,7 @@
         </div>
 
       </div>
-      <div id="secuencias_timeline">
+      <div id="timeline_secuencias">
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>

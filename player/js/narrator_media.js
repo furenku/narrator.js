@@ -61,6 +61,13 @@ Embed = function( name_ ) {
 inheritPrototype( Embed, Media );
 
 
+Url = function( name_ ) {
+	Media.call( this, name_, "embed" );
+}
+
+inheritPrototype( Url, Media );
+
+
 Tweet = function( name_ ) {
 	Media.call( this, name_, "tweet" );
 }
