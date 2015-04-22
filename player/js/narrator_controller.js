@@ -1,13 +1,12 @@
 Narrator = function() {
 
 	this.n = new Narrative("A19");
-	
+
 	this.playing = false;
 	this.playhead = 0;
 
 	gui = new NarratorGUI( this );
 
-	var sections = [];
 
 	this.play = function() {
 		this.playing = true;
@@ -40,10 +39,14 @@ Narrator = function() {
 	}
 
 
-	loadSections = function( sections ) {
+	drawSections = function( sections ) {
 		gui.createSectionMenu( sections );
 	}
 
+	loadSections = function( sections ) {
+		console.log("load sections", sections );
+	}
+	
 
 	this.loadDB = function() {
 		$.ajax({
@@ -51,18 +54,26 @@ Narrator = function() {
 			dataType: 'json',
 			success: function( data ) {
 				
+				sectionsHTML = [];
+				sectionObjects = [];
+				
 				for(var i=0; i < data.length; i++) {
 					var section = data[i];		
-
 					if( typeof( section.sequences ) != "undefined" ) {
 
 						var sequences = section.sequences;
+						sectionObject = new Section(section.name);
+
 						for(var j=0; j<sequences.length; j++){
-							var contents = sequences[j].contents;
+							var sequence = sequences[j];
+							var contents = sequence.contents;
+							
+							sequenceObject = new Sequence(sequence.name);
+						
 							for(var k=0; k<contents.length; k++  ){
 								
 								var contentMedia = contents[k].media;
-
+								contentObject = new Content( contents[k].info.name )
 								for(var l=0; l < contentMedia.length; l++ ){
 									var type = contentMedia[l].type;
 									var mediaItems = contentMedia[l].media;
@@ -76,43 +87,49 @@ Narrator = function() {
 									 		
 									 		var mediaObject;
 									 		if( type === "texts" )
-								 				mediaObject = new Text('img_name');
+								 				mediaObject = new Text('text');
 
 									 		if( type === "images" )
-								 				mediaObject = new Image('img_name');
+								 				mediaObject = new Image('img');
 
 									 		if( type === "videos" )
-								 				mediaObject = new Video('img_name');
+								 				mediaObject = new Video('video');
 
 									 		if( type === "audios" )
-								 				mediaObject = new Sound('img_name');
+								 				mediaObject = new Sound('sound');
 
 									 		if( type === "tweet_ids" )
-								 				mediaObject = new Tweet('img_name');
+								 				mediaObject = new Tweet('tweet');
 
 									 		if( type === "urls" )
-								 				mediaObject = new Url('img_name');
+								 				mediaObject = new Url('url');
 
 									 		if( type === "htmls" )
-								 				mediaObject = new Embed('img_name');
+								 				mediaObject = new Embed('html');
 
 
-								 			if( typeof(mediaObject)!="undefined")
+								 			if( typeof(mediaObject)!="undefined") {
 							 					mediaObject.setMedia( mediaItem );
+							 					contentObject.addItem( mediaObject );
+								 			}
 
-						 					console.log( mediaObject );
+						 					
 
 									 	}
 									}
 								}
+								sequenceObject.addItem( contentObject );
 							}
+							sectionObject.addItem( sequenceObject );
 						}
-						sections.push( section );
+						sectionObjects.push( sectionObject );
+						sectionsHTML.push( section );
 					}
 		
 				}
 			
-				loadSections( sections );
+				loadSections( sectionObjects );
+				drawSections( sectionsHTML );
 			}
 		});
 	}

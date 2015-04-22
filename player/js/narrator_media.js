@@ -62,7 +62,7 @@ inheritPrototype( Embed, Media );
 
 
 Url = function( name_ ) {
-	Media.call( this, name_, "embed" );
+	Media.call( this, name_, "url" );
 }
 
 inheritPrototype( Url, Media );
