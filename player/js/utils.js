@@ -77,7 +77,7 @@ function keysrt(key,desc) {
 
 function wrap( index_, array_ ) {
     
-    var index;
+    var index = index_;
 
     if( index_ > array_.length )
         index = 0;

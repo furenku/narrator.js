@@ -19,6 +19,13 @@ Content.prototype.removeMedia = function( media_ ) {
 	this.items.splice( index, 1 );
 }
 
+Content.prototype.next = function() {
+	var n = ElementList.prototype.next.apply(this);
+	console.log("Content NEXT::::", n);
+	return n;
+}
+
+
 
 Sequence = function( name_ ) {
 
@@ -31,6 +38,12 @@ Sequence = function( name_ ) {
 inheritPrototype( Sequence, ElementList );
 
 
+Sequence.prototype.next = function() {
+	var n = ElementList.prototype.next.apply(this);	
+	console.log("Sequence NEXT::::", n.next());
+	return n;
+}
+
 
 Section = function( name_ ) {
 
@@ -41,6 +54,12 @@ Section = function( name_ ) {
 }
 
 inheritPrototype( Section, ElementList );
+
+Section.prototype.next = function() {
+	var n = ElementList.prototype.next.apply(this);
+	console.log("Section NEXT::::", n.next());
+	return n;
+}
 
 
 
@@ -54,3 +73,9 @@ Narrative = function( name_ ) {
 
 inheritPrototype( Narrative, ElementList );
 
+
+Narrative.prototype.next = function() {	
+	var n = ElementList.prototype.next.apply(this);
+	//console.log("Narrative NEXT::::", n.next());
+	return n;
+}
