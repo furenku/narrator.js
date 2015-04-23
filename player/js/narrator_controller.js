@@ -36,6 +36,7 @@ Narrator = function() {
 	this.addSection = function( section ) {		
 		if( section.getType() === "section")
 			this.n.addItem( section );
+		
 	}
 
 
@@ -44,7 +45,11 @@ Narrator = function() {
 	}
 
 	loadSections = function( sections ) {
-		console.log("load sections", sections );
+		for( var i=0; i< sections.length; i++ ) {
+			this.n.addSection( sections[i] )
+		}
+
+		console.log( this.n )
 	}
 	
 
@@ -63,13 +68,15 @@ Narrator = function() {
 
 						var sequences = section.sequences;
 						sectionObject = new Section(section.name);
+						sectionObject.setType('section');
 
 						for(var j=0; j<sequences.length; j++){
 							var sequence = sequences[j];
 							var contents = sequence.contents;
 							
 							sequenceObject = new Sequence(sequence.name);
-						
+							sequenceObject.setType('linear');
+							
 							for(var k=0; k<contents.length; k++  ){
 								
 								var contentMedia = contents[k].media;
