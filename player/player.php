@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/momentjs/min/moment.min.js"></script>
+    
 
 
 
@@ -18,7 +19,7 @@
 <?php require 'funciones.php'; ?>
 
 <body>
-
+  <div id="test"></div>
   <header class="xrow">
     <div id="header_controles" class="w100 text-center">
       <button class="control"><span class="fa fa-play"></span></button>
@@ -64,6 +65,11 @@
       <div id="pantallas">      
       </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
+
+      <div id="nav_arrows">
+        <div id="prev_arrow"><<</div>
+        <div id="next_arrow">>></div>
+      </div>
     </div>
 
   </div> <!-- twitter_pantallas -->
@@ -80,7 +86,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
       <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/jquery.tube/jquery.tube.min.js"></script>
-
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/events.js"></script>

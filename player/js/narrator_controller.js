@@ -1,12 +1,12 @@
 Narrator = function() {
 
 	this.n = new Narrative("A19");
-
+	this.name="narrA19";
 	this.playing = false;
 	this.playhead = 0;
 
 	gui = new NarratorGUI( this );
-	
+
 	currentSection = 0;
 	currentSequence = 0;
 	currentContent = 0;
@@ -45,6 +45,7 @@ Narrator = function() {
 		} else {
 			currentSection.reset();
 			currentSequence = currentSection.getItem(0); 
+			currentContent = currentSequence.getItem(0); 
 		}
 
 	}
@@ -96,6 +97,7 @@ Narrator = function() {
 							for(var k=0; k<contents.length; k++  ){
 								
 								var contentMedia = contents[k].media;
+								clog( contents[k] );
 								contentObject = new Content( contents[k].info.name )
 								for(var l=0; l < contentMedia.length; l++ ){
 									var type = contentMedia[l].type;
@@ -129,6 +131,9 @@ Narrator = function() {
 
 									 		if( type === "htmls" )
 								 				mediaObject = new Embed('html');
+
+											if( type === "vimeoids" )
+								 				mediaObject = new VimeoID('html');
 
 
 								 			if( typeof(mediaObject)!="undefined") {
@@ -166,30 +171,51 @@ Narrator = function() {
 
 
 		n.jump( 0 );
-		clog( currentSection );
+		//clog( currentSection );
 		clearInterval(narration)
-		narration = setInterval( n.narrate,1);
+		narration = setInterval( n.narrate,100);
 	}
 	
-	
+	this.testVimeo = function() {
+		gui.openVimeo(0);
+	}
+
+
+	this.getCurrentContent = function() {
+		return currentContent;
+	}
 
 	this.narrate = function() {
-		console.log( '.' )
 		if( ! currentSection )
 			clearInterval(narration)
 		else {
-
-			currentContent = currentSequence.next();
+			//currentContent = currentSequence.next();
+			if( typeof( currentContent ) == "undefined" )
+				currentContent = currentSequence.next();
+			else {
+				if( currentContent.done  )
+					currentContent = currentSequence.next();
+			}
 		
-			if( currentContent != "done" ) {
-				//console.log( currentContent )
+			if( currentContent != "done" && typeof( currentContent ) != "undefined" ) {
+
+				if( ! currentContent.started  ) {
+					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
+						//lastTime = new Date();
+						gui.openContent( currentContent.getItems()[i] )
+						//var contentType = currentContent.getItems()[i].getType();
+
+					}
+					currentContent.started = true;
+				}	
 			} else {
 				currentSequence = currentSection.next();
 				console.log( currentSequence )
 			}			
 		
-			if( currentSequence=="done") n.fwd();
+			if( currentSequence=="done") this.fwd();
 
+			
 		}
 	}
 }

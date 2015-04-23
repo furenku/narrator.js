@@ -1,7 +1,8 @@
 NarratorGUI = function( parent ) {
 
-	this.parent = parent;
-
+	gui = this;
+	gui.controller = parent;
+	console.log(this.controller.currentContent )
 	this.setupGUI = function(){
 		console.log( "IMPL: crear botones" )
 		// crear botones para distintas secciones
@@ -44,6 +45,20 @@ NarratorGUI = function( parent ) {
 	this.openContent = function( mediaItem )
 	{
 		if( mediaItem != "" ) {
+
+			if( mediaItem.getType() === "image" ) {
+/*				
+				content = $('<img>').attr('src', mediaItem.media );
+				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );												
+				$('#test').html( content )
+*/
+			}
+
+			if( mediaItem.getType() === "vimeoid" ) {
+				id = mediaItem.media;
+				this.openVimeo( id );
+				console.log( "VIMEO:", mediaItem )
+			}
 /*
 			if( key === "textos" ) {
 				var vtable = makeDiv("","vcenter_content").html( content );
@@ -112,6 +127,72 @@ NarratorGUI = function( parent ) {
 			mediaP.css({ maxHeight: pantalla.width() });
 */
 		}
+	}
+
+
+	this.onPause = function(id) {
+	    //status.text('paused');
+	}
+
+	this.onFinish = function(id) {
+	    console.log('finished');
+	    n.getCurrentContent().done = true;
+	    //switchit();
+	    //this.controller.currentContent.done = true;
+
+	}
+
+
+	this.onPlayProgress = function(data, id) {
+	    console.log(n.getCurrentContent().name);
+	    //status.text(data.seconds + 's played');
+	}
+
+	this.vimeoupdate = function(id) {
+	    $('body').prepend( $('<div>').attr('id','iframe'));
+	    $('#iframe').prepend('<iframe id="player1" src="http://player.vimeo.com/video/'+id+'?api=1&player_id=player1" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+	    
+	    
+	    var iframe = $('#player1')[0],
+	    player = $f(iframe),
+	    status = $('.status');
+
+		// When the player is ready, add listeners for pause, finish, and playProgress
+		player.addEvent('ready', function() {
+		    //status.text('ready');
+
+		    player.addEvent('pause', gui.onPause);
+		    player.addEvent('finish', gui.onFinish);
+		    player.addEvent('playProgress', gui.onPlayProgress);
+		    
+		    player.api("play");
+
+		});
+
+		// Call the API when a button is pressed
+		$('button').bind('click', function() {
+		    player.api($(this).text().toLowerCase());
+		});
+
+		    
+
+	}
+	this.createVimeo = function (id){
+	    //player.api("finish");
+		$('#iframe').html('');    
+		this.vimeoupdate(id);
+	}
+
+
+	this.openVimeo = function( id ) {
+		clog("openVimeo")
+
+		this.createVimeo(id);
+
+		   
+		//setInterval(function(){switchit();},3000);
+		    
+	    
 	}
 
 

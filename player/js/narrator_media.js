@@ -74,3 +74,9 @@ Tweet = function( name_ ) {
 
 inheritPrototype( Tweet, Media );
 
+VimeoID = function( name_ ) {
+	Media.call( this, name_, "vimeoid" );
+}
+
+inheritPrototype( VimeoID, Media );
+

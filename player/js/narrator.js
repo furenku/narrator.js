@@ -1,4 +1,4 @@
-var n;
+var n, narrator;
 
 
 $.when(
@@ -16,12 +16,13 @@ $.when(
 ).done(function(){
 
 
-    n = new Narrator();
+    narrator = n = new Narrator();
 
     
-    
+    //n.testVimeo();
+
     n.loadDB( n.testDB );
-
+    n.gui.controller=n;
 
 	console.log("NARRATOR READY!")
 

@@ -9340,7 +9340,7 @@ th.hide-for-touch {
 }
 
 /* line 93, ../scss/app.scss */
-.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clearDiv, #player #pantallas .pantalla, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video {
+.abs, .progress_bar_holder .markers, .progress_bar_holder .markers .marker, #player #pantallas #clearDiv, #player #pantallas .pantalla, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .contenedor, #player #pantallas .pantalla .video, #nav_arrows > div {
   position: absolute;
   left: 0;
   top: 0;
@@ -9364,13 +9364,13 @@ th.hide-for-touch {
 
 /* line 114, ../scss/app.scss */
 .w100, .wh100, html, body, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .media_tweet,
-#player #pantallas .pantalla .media_textos, .progress_bar_holder, .progress_bar_holder div {
+#player #pantallas .pantalla .media_textos, #nav_arrows, .progress_bar_holder, .progress_bar_holder div {
   width: 100%;
 }
 
 /* line 117, ../scss/app.scss */
 .h100, .wh100, html, body, #player #pantallas .pantalla .media_player, #player #pantallas .pantalla .media_tweet,
-#player #pantallas .pantalla .media_textos {
+#player #pantallas .pantalla .media_textos, #nav_arrows {
   height: 100%;
 }
 
@@ -9658,3 +9658,22 @@ body {
 }
 
 /* header */
+/* line 545, ../scss/app.scss */
+#nav_arrows {
+  position: relative;
+  color: white;
+}
+/* line 549, ../scss/app.scss */
+#nav_arrows > div {
+  top: 50%;
+}
+/* line 553, ../scss/app.scss */
+#nav_arrows #prev_arrow {
+  left: 0;
+}
+/* line 556, ../scss/app.scss */
+#nav_arrows #next_arrow {
+  left: 100%;
+  right: 0;
+  right: 0;
+}
