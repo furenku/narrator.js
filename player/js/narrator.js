@@ -19,8 +19,8 @@ $.when(
     n = new Narrator();
 
     
-
-    n.loadDB();
+    
+    n.loadDB( n.testDB );
 
 
 	console.log("NARRATOR READY!")

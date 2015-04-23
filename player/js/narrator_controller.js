@@ -6,12 +6,19 @@ Narrator = function() {
 	this.playhead = 0;
 
 	gui = new NarratorGUI( this );
-
+	
+	currentSection = 0;
+	currentSequence = 0;
+	currentContent = 0;
 
 	this.play = function() {
+		
+		clearInterval(narration)
+		narration = setInterval( n.narrate,1);
+
 		this.playing = true;
 		console.log( "play" );
-		console.log( this.n.next() );
+		//this.jump( this.playhead ):
 	}
 	this.pause = function() {
 		this.playing = false;
@@ -20,6 +27,7 @@ Narrator = function() {
 	this.stop = function() {
 		this.playing = false;
 		console.log( "stop" );
+		this.playhead = 0;
 	}
 	this.rew = function() {
 		this.playhead = wrap( this.playhead - 1, this.n.items );
@@ -30,7 +38,15 @@ Narrator = function() {
 		this.jump( this.playhead )
 	}
 	this.jump = function( index ) {
-		console.log( "jump", this.n.getItem( index ) );
+		currentSection = this.n.getItem( index );
+		
+		if( currentSection == false ) {
+			this.stop();
+		} else {
+			currentSection.reset();
+			currentSequence = currentSection.getItem(0); 
+		}
+
 	}
 
 	this.addSection = function( section ) {		
@@ -53,7 +69,7 @@ Narrator = function() {
 	}
 	
 
-	this.loadDB = function() {
+	this.loadDB = function( callback ) {
 		$.ajax({
 			url: 'http://localhost/web/A19/db',
 			dataType: 'json',
@@ -134,11 +150,46 @@ Narrator = function() {
 					}
 		
 				}
-			
-				loadSections( sectionObjects );
-				drawSections( sectionsHTML );
+				
+				callback();
 			}
 		});
 	}
 
+	narration = 0;
+
+	this.testDB = function() {
+		console.log("testDNB!");
+
+		loadSections( sectionObjects );
+		drawSections( sectionsHTML );
+
+
+		n.jump( 0 );
+		clog( currentSection );
+		clearInterval(narration)
+		narration = setInterval( n.narrate,1);
+	}
+	
+	
+
+	this.narrate = function() {
+		console.log( '.' )
+		if( ! currentSection )
+			clearInterval(narration)
+		else {
+
+			currentContent = currentSequence.next();
+		
+			if( currentContent != "done" ) {
+				//console.log( currentContent )
+			} else {
+				currentSequence = currentSection.next();
+				console.log( currentSequence )
+			}			
+		
+			if( currentSequence=="done") n.fwd();
+
+		}
+	}
 }

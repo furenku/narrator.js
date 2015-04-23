@@ -106,3 +106,9 @@ ElementList.prototype.previous = function() {
 		return "not started";
 	
 }
+
+
+ElementList.prototype.reset = function() {
+	this.done = false;
+	this.currentItem = 0;
+}

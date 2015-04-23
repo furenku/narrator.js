@@ -21,10 +21,9 @@ Content.prototype.removeMedia = function( media_ ) {
 
 Content.prototype.next = function() {
 	var n = ElementList.prototype.next.apply(this);
-	console.log("Content NEXT::::", n);
+	//console.log("Content NEXT::::", n);
 	return n;
 }
-
 
 
 Sequence = function( name_ ) {
@@ -40,8 +39,16 @@ inheritPrototype( Sequence, ElementList );
 
 Sequence.prototype.next = function() {
 	var n = ElementList.prototype.next.apply(this);	
-	console.log("Sequence NEXT::::", n.next());
+	//console.log("Sequence NEXT::::", n.next());
 	return n;
+}
+
+
+Sequence.prototype.reset = function() {
+	ElementList.prototype.reset.apply(this);	
+	for(var i = 0; i<this.items.length; i++) {
+		this.items[i].reset();
+	}
 }
 
 
@@ -57,11 +64,18 @@ inheritPrototype( Section, ElementList );
 
 Section.prototype.next = function() {
 	var n = ElementList.prototype.next.apply(this);
-	console.log("Section NEXT::::", n.next());
+	//console.log("Section NEXT::::", n.next());
 	return n;
 }
 
+Section.prototype.reset = function() {
+	ElementList.prototype.reset.apply(this);	
+	
+	for(var i = 0; i<this.items.length; i++) {
+		this.items[i].reset();
+	}
 
+}
 
 Narrative = function( name_ ) {
 
