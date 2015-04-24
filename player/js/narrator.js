@@ -22,7 +22,7 @@ $.when(
     //n.testVimeo();
 
     n.loadDB( n.testDB );
-    n.gui.controller=n;
+   // n.gui.controller=n;
 
 	console.log("NARRATOR READY!")
 

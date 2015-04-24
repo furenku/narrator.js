@@ -50,7 +50,7 @@ Narrator = function() {
 	}
 	this.jump = function( index ) {
 		gui.removeCover();
-		
+
 		currentSection = this.n.getItem( index );
 		
 		if( currentSection == false ) {
@@ -93,7 +93,7 @@ Narrator = function() {
 
 	this.loadDB = function( callback ) {
 		$.ajax({
-			url: 'http://localhost/web/A19/db',
+			url: 'http://162.243.159.61/furenku/A19/?page_id=80',
 			dataType: 'json',
 			success: function( data ) {
 				
