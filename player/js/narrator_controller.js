@@ -12,19 +12,8 @@ Narrator = function() {
 	currentContent = 0;
 
 	this.play = function() {
+		n.jump( this.playhead );
 		
-		clearInterval(narration)
-		narration = setInterval( n.narrate,1);
-
-		this.playing = true;
-		console.log( "play" );
-
-		n.jump( 0 );
-		//clog( currentSection );
-		clearInterval(narration)
-		narration = setInterval( n.narrate,100);
-		gui.removeCover();
-		//this.jump( this.playhead ):
 	}
 	this.pause = function() {
 		this.playing = false;
@@ -49,6 +38,19 @@ Narrator = function() {
 		this.jump( this.playhead )
 	}
 	this.jump = function( index ) {
+		
+		clearInterval(narration)
+		narration = setInterval( n.narrate,1);
+
+		this.playing = true;
+		console.log( "play" );
+
+		//clog( currentSection );
+		clearInterval(narration)
+		narration = setInterval( n.narrate,100);
+		gui.removeCover();
+		//this.jump( this.playhead ):
+
 		gui.removeCover();
 
 		currentSection = this.n.getItem( index );
@@ -60,6 +62,8 @@ Narrator = function() {
 			currentSequence = currentSection.getItem(0); 
 			currentContent = currentSequence.getItem(0); 
 		}
+		this.playhead = index;
+		
 
 	}
 
@@ -93,7 +97,8 @@ Narrator = function() {
 
 	this.loadDB = function( callback ) {
 		$.ajax({
-			url: 'http://162.243.159.61/furenku/A19/?page_id=80',
+			url: 'http://localhost/web/A19/db',
+			//url: 'http://162.243.159.61/furenku/A19/?page_id=80',
 			dataType: 'json',
 			success: function( data ) {
 				
@@ -217,8 +222,8 @@ Narrator = function() {
 					currentContent = currentSequence.next();
 			}
 		
-			if( currentContent != "done" && typeof( currentContent ) != "undefined" ) {
-
+			if( currentContent != false && currentContent != "done" && typeof( currentContent ) != "undefined" ) {
+				console.log("test:",currentContent)
 				if( ! currentContent.started  ) {
 					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
 						//lastTime = new Date();
@@ -233,7 +238,7 @@ Narrator = function() {
 				console.log( currentSequence )
 			}			
 		
-			if( currentSequence=="done") this.fwd();
+			if( currentSequence=="done") narrator.fwd();
 
 			
 		}

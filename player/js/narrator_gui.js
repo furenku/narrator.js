@@ -38,7 +38,7 @@ NarratorGUI = function( parent ) {
 			$('header #timeline_secciones .markers').append( div )
 
 			div.click(function(){
-				console.log( $(this).index() );
+				console.log( "jump to:" + $(this).index() );
 				narrator.jump( $(this).index() );
 			})
 
@@ -156,7 +156,7 @@ NarratorGUI = function( parent ) {
 	this.onFinish = function(id) {
 	    console.log('finished');
 	    n.getCurrentContent().done = true;
-	    this.clearScreens();
+	    gui.clearScreens();
 	    //switchit();
 	    //this.controller.currentContent.done = true;
 
