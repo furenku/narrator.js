@@ -28,10 +28,10 @@ NarratorGUI = function( parent ) {
 				"section_menu_"+sections[i].name,
 				"marker section_menu_option"
 			)
-			div.text( sections[i].name );
+			div.html( '<button class="secciones_button">' + sections[i].name +  '</button>');
 
 			div.css({
-				left: (i/sections.length)*$('#timeline_secciones').width()
+				left: ( (i/sections.length)*$('#timeline_secciones').width() ) + ( ( $('#timeline_secciones').width()/sections.length ) / 4 )
 			})
 
 

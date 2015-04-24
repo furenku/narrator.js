@@ -9,6 +9,9 @@ $fontL: 25px;
 $fontXL: 32px;
 
 
+.fontS {
+	font-size: $fontXS !important;
+}
 
 @import "settings";
 @import "foundation";
@@ -58,7 +61,9 @@ header {
 
 }
 footer {
-
+	height:100px;
+	line-height: 100px;
+	color:#ccc;
 }
 
 
@@ -202,12 +207,12 @@ body {
 		margin: 0;
 		padding: 0;
 		height: $spacing / 3;
-		background-color: #444;
+		background-color: #333333;
 		.progress {
 			border:none;
 			width:33%;
 			height: 100%;
-			background-color: #444;
+			background-color: #363636;
 		}
 	}
 
@@ -218,15 +223,16 @@ body {
 		.marker {
 			@extend .abs;
 			@extend .hoverLink;
-			border-left: 2px solid #ccc;
+			//border-left: 2px solid #ccc;
 			color: #ccc;
 			width:200px;
 			height: $spacing / 2;
+			font-size: $fontS;
 			//padding: $spacing / 3 0;
 
 			&.current {
 				color: $highlightColor;
-				border-left: 2px solid $highlightColor !important;
+				//border-left: 2px solid $highlightColor !important;
 			}
 
 		}
@@ -281,14 +287,6 @@ body {
 		&.on {
 			background-color: #888;
 		}
-	}
-	button {
-		@extend .toggle;
-
-		border-radius: $spacing / 3;
-		padding: $spacing / 4;
-		float: left;
-		font-size: $fontS;
 	}
 	
 
@@ -573,4 +571,32 @@ body {
 #pantallas {
 
 	position: relative;
+}
+
+#descarga {
+	font-size: $fontS !important;
+}
+
+.secciones_button {
+	padding-top: $spacing / 6;
+	padding-bottom: $spacing / 6;
+	font-size: $fontS !important;
+}
+.secciones_button,
+#descarga,
+#prev_arrow, #next_arrow,
+#transport_play, #transport_stop {
+	@extend .toggle;
+	background-color: #2a2a2a !important;
+	
+
+	&:hover,&:focus{		
+		background-color: #3f3f3f !important;
+		border: none;
+	}
+}
+
+
+button span {
+	padding: 0 $spacing / 2;
 }

@@ -66,7 +66,7 @@
       </div>
 
       <div id="pantallas" class="small-10 columns fitH">      
-        
+
       </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
 
@@ -87,11 +87,18 @@
   </div> <!-- twitter_pantallas -->
 
   <footer class="xrow">
-    
-    <div id="footer_controles" class="w100 text-center">
+    <div id="footer_logo" class="small-3 columns">
+      <a href="http://article19.org">
+        <img src="img/a19.png" alt="">
+      </a>
+    </div>
+    <div id="footer_controles" class="small-6 columns text-center">
       <button id="transport_play" class="control"><span class="fa fa-play"></span></button>
       <button id="transport_stop" class="control"><span class="fa fa-stop"></span></button>
         
+    </div>
+    <div id="footer_descarga" class="small-3 columns fontS text-right">
+      <a href="link/a/informe/en/pdf"><button id="descarga"><span class="fa fa-download"></span>Descarga el informe en PDF</button></a>
     </div>
     
   </footer>

@@ -63,6 +63,9 @@ Narrator = function() {
 			currentContent = currentSequence.getItem(0); 
 		}
 		this.playhead = index;
+
+		$('.markers .marker').siblings().removeClass('current')
+		$('.markers .marker').eq(index).addClass('current')
 		
 
 	}
