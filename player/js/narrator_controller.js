@@ -18,6 +18,12 @@ Narrator = function() {
 
 		this.playing = true;
 		console.log( "play" );
+
+		n.jump( 0 );
+		//clog( currentSection );
+		clearInterval(narration)
+		narration = setInterval( n.narrate,100);
+		gui.removeCover();
 		//this.jump( this.playhead ):
 	}
 	this.pause = function() {
@@ -25,11 +31,14 @@ Narrator = function() {
 		console.log( "pause" );
 	}
 	this.stop = function() {
+		clearInterval(narration)
+
 		this.n.getItem( this.playhead ).reset();
 		gui.clearScreens();
 		this.playing = false;
 		console.log( "stop" );
 		this.playhead = 0;
+		gui.placeCover();
 	}
 	this.rew = function() {
 		this.playhead = wrap( this.playhead - 1, this.n.items );
@@ -40,6 +49,8 @@ Narrator = function() {
 		this.jump( this.playhead )
 	}
 	this.jump = function( index ) {
+		gui.removeCover();
+		
 		currentSection = this.n.getItem( index );
 		
 		if( currentSection == false ) {
@@ -52,8 +63,12 @@ Narrator = function() {
 
 	}
 
-	this.previousContent = function() {}
-	this.nextContent = function() {}
+	this.previousContent = function() {
+		currentContent = currentSequence.previous();
+	}
+	this.nextContent = function() {
+		currentContent = currentSequence.next();
+	}
 
 
 	this.addSection = function( section ) {		
@@ -176,10 +191,9 @@ Narrator = function() {
 		drawSections( sectionsHTML );
 
 
-		n.jump( 0 );
-		//clog( currentSection );
-		clearInterval(narration)
-		narration = setInterval( n.narrate,100);
+		gui.placeCover();
+
+		
 	}
 	
 	this.testVimeo = function() {
@@ -224,4 +238,7 @@ Narrator = function() {
 			
 		}
 	}
+
+
+
 }

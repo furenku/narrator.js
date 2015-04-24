@@ -15,6 +15,12 @@ NarratorGUI = function( parent ) {
 	$('#next_arrow').click(function(){
 		narrator.nextContent();
 	})
+	$('#transport_play').click(function(){
+		narrator.play();
+	})
+	$('#transport_stop').click(function(){
+		narrator.stop();
+	})
 
 	this.createSectionMenu = function( sections ) {
 		for( i in sections ) {
@@ -44,7 +50,14 @@ NarratorGUI = function( parent ) {
 
 
 
+	this.placeCover = function() {
+		$('.pantalla').first().html('')
+		$('.pantalla').first().html('<video class="fullWH" autoplay loop><source src="edc/vd/anim.mp4" type="video/mp4"><source src="edc/vd/anim.webm" type="video/webm"><source src="edc/vd/anim.ogg" type="video/webm">Tu navegador no soporta la etiqueta video. Prueba actualizándolo o instalando otro más moderno.</video>')
+	}
+	this.removeCover = function() {
+		$('.pantalla video').remove();
 
+	}
 
 
 

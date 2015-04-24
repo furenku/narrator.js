@@ -66,6 +66,7 @@
       </div>
 
       <div id="pantallas" class="small-10 columns fitH">      
+        
       </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
 
@@ -88,11 +89,9 @@
   <footer class="xrow">
     
     <div id="footer_controles" class="w100 text-center">
-      <button class="control"><span class="fa fa-play"></span></button>
-      <button class="control"><span class="fa fa-stop"></span></button>
-      <button class="control"><span class="fa fa-pause"></span></button>
-      <button class="control"><span class="fa fa-backward"></span></button>
-      <button class="control"><span class="fa fa-forward"></span></button>      
+      <button id="transport_play" class="control"><span class="fa fa-play"></span></button>
+      <button id="transport_stop" class="control"><span class="fa fa-stop"></span></button>
+        
     </div>
     
   </footer>
