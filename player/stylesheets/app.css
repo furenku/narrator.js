@@ -9713,14 +9713,20 @@ body {
   font-size: 12px !important;
 }
 
-/* line 585, ../scss/app.scss */
+/* line 586, ../scss/app.scss */
+.current .secciones_button {
+  background-color: #555;
+  color: #fff;
+}
+
+/* line 590, ../scss/app.scss */
 .secciones_button,
 #descarga,
 #prev_arrow, #next_arrow,
 #transport_play, #transport_stop {
   background-color: #2a2a2a !important;
 }
-/* line 593, ../scss/app.scss */
+/* line 598, ../scss/app.scss */
 .secciones_button:hover, .secciones_button:focus,
 #descarga:hover,
 #descarga:focus,
@@ -9732,7 +9738,7 @@ body {
   border: none;
 }
 
-/* line 600, ../scss/app.scss */
+/* line 605, ../scss/app.scss */
 button span {
   padding: 0 15px;
 }

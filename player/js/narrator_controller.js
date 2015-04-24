@@ -75,6 +75,20 @@ Narrator = function() {
 	}
 	this.nextContent = function() {
 		currentContent = currentSequence.next();
+		if(currentContent==="done" && typeof( currentContent ) != "undefined" ) {
+		currentContent.started=false;
+
+			currentSequence = currentSection.next();
+			if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {
+				var items = currentSequence.getItems();
+				for( var h = 0; h<items.length; h++) {
+					items[h].started=false;
+					currentSequence.started=false;
+				}
+			}
+		}
+		if(currentSection==="done")
+			this.stop()
 	}
 
 
@@ -194,7 +208,7 @@ Narrator = function() {
 
 	this.testDB = function() {
 		console.log("testDNB!");
-
+//console.log("sectionObjects",sectionObjects)
 		loadSections( sectionObjects );
 		drawSections( sectionsHTML );
 
@@ -218,9 +232,10 @@ Narrator = function() {
 			clearInterval(narration)
 		else {
 			//currentContent = currentSequence.next();
-			if( typeof( currentContent ) == "undefined" )
+			if( typeof( currentContent ) == "undefined" || currentContent === "done" )
 				currentContent = currentSequence.next();
 			else {
+				console.log("test:",currentContent)
 				if( currentContent.done  )
 					currentContent = currentSequence.next();
 			}
@@ -236,12 +251,22 @@ Narrator = function() {
 					}
 					currentContent.started = true;
 				}	
-			} else {
-				currentSequence = currentSection.next();
-				console.log( currentSequence )
+			} 
+
+			if(currentContent === "done" || ! currentContent ) {
+				currentContent = currentSequence.next();
+				if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {
+					var items = currentSequence.getItems();
+					for( var h = 0; h<items.length; h++) {
+						items[h].started=false;
+						currentSequence.started=false;
+					}
+				}
+
+				
 			}			
 		
-			if( currentSequence=="done") narrator.fwd();
+			if( currentSequence==="done") narrator.fwd();
 
 			
 		}

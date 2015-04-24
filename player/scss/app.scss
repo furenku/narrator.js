@@ -582,6 +582,11 @@ body {
 	padding-bottom: $spacing / 6;
 	font-size: $fontS !important;
 }
+
+.current .secciones_button {
+	background-color: #555;
+	color:#fff;
+}
 .secciones_button,
 #descarga,
 #prev_arrow, #next_arrow,
