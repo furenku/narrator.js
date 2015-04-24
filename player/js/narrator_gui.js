@@ -9,6 +9,13 @@ NarratorGUI = function( parent ) {
 
 	}
 
+	$('#prev_arrow').click(function(){
+		narrator.previousContent();
+	})
+	$('#next_arrow').click(function(){
+		narrator.nextContent();
+	})
+
 	this.createSectionMenu = function( sections ) {
 		for( i in sections ) {
 			var div = makeDiv( 
@@ -26,12 +33,11 @@ NarratorGUI = function( parent ) {
 
 			div.click(function(){
 				console.log( $(this).index() );
-				parent.jump( $(this).index() );
+				narrator.jump( $(this).index() );
 			})
 
 		}
 	}
-
 
 
 
@@ -137,6 +143,7 @@ NarratorGUI = function( parent ) {
 	this.onFinish = function(id) {
 	    console.log('finished');
 	    n.getCurrentContent().done = true;
+	    this.clearScreens();
 	    //switchit();
 	    //this.controller.currentContent.done = true;
 
@@ -149,8 +156,11 @@ NarratorGUI = function( parent ) {
 	}
 
 	this.vimeoupdate = function(id) {
-	    $('body').prepend( $('<div>').attr('id','iframe'));
-	    $('#iframe').prepend('<iframe id="player1" src="http://player.vimeo.com/video/'+id+'?api=1&player_id=player1" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+	    $('.pantalla').first().prepend( $('<div>').attr('id','iframe'));
+	    /**/
+	    $('#iframe').addClass('wh100 text-center').prepend('<iframe id="player1" src="http://player.vimeo.com/video/'+id+'?api=1&player_id=player1" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+	    //$('#iframe').css({textAlign:'center'});
+	    $('#iframe iframe').addClass('wh100');
 	    
 	    
 	    var iframe = $('#player1')[0],
@@ -170,16 +180,17 @@ NarratorGUI = function( parent ) {
 		});
 
 		// Call the API when a button is pressed
+		/*
 		$('button').bind('click', function() {
 		    player.api($(this).text().toLowerCase());
 		});
-
+		*/
 		    
 
 	}
 	this.createVimeo = function (id){
 	    //player.api("finish");
-		$('#iframe').html('');    
+		this.clearScreens();    
 		this.vimeoupdate(id);
 	}
 
@@ -193,6 +204,12 @@ NarratorGUI = function( parent ) {
 		//setInterval(function(){switchit();},3000);
 		    
 	    
+	}
+
+
+	this.clearScreens = function() {
+		$('#iframe').html('');    
+		$('#iframe').remove();
 	}
 
 

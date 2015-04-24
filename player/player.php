@@ -21,16 +21,11 @@
 <body>
   <div id="test"></div>
   <header class="xrow">
-    <div id="header_controles" class="w100 text-center">
-      <button class="control"><span class="fa fa-play"></span></button>
-      <button class="control"><span class="fa fa-stop"></span></button>
-      <button class="control"><span class="fa fa-pause"></span></button>
-      <button class="control"><span class="fa fa-backward"></span></button>
-      <button class="control"><span class="fa fa-forward"></span></button>      
-    </div>
+    
 
     <div id="timelines" class="xrow">
-      <div id="timeline_secciones" class="w100">
+      <div id="timeline_secciones" class="xrow">
+      <!-- <div id="timeline_secciones" class="small-10 small-offset-1 columns"> -->
         <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
@@ -56,31 +51,50 @@
   </header>
   
   <div id="twitter_pantallas" class="xrow">
-    
-    <div id="twitter" class="fitH hide-for-small medium-3 large-1 columns">
-      <?php twitter(); ?>
-    </div>
 
-    <div id="player" class="small-12 medium-9 large-11 columns fitH">
-      <div id="pantallas">      
+    <div id="player" class="small-12 columns fitH">
+      <div class="nav_arrow small-1 columns fitH">
+
+        <div class="vcenter_table">
+          <div class="vcenter_container">
+            <div class="vcenter_content">
+              <button id="prev_arrow"><span class="fa fa-backward"></span></button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div id="pantallas" class="small-10 columns fitH">      
       </div>
     <!-- <iframe src="http://new.livestream.com/accounts/6789177/events/3897569/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe> -->
 
-      <div id="nav_arrows">
-        <div id="prev_arrow"><<</div>
-        <div id="next_arrow">>></div>
+      <div class="nav_arrow small-1 columns fitH">
+      
+        <div class="vcenter_table">
+          <div class="vcenter_container">
+            <div class="vcenter_content">
+              <button id="next_arrow"><span class="fa fa-forward"></span></button>
+            </div>
+          </div>
+        </div>      
+
       </div>
+
     </div>
 
   </div> <!-- twitter_pantallas -->
 
   <footer class="xrow">
     
-    <div id="secuencia_media" class="">
-      <div class="scrollX">      
-        
-      </div>
+    <div id="footer_controles" class="w100 text-center">
+      <button class="control"><span class="fa fa-play"></span></button>
+      <button class="control"><span class="fa fa-stop"></span></button>
+      <button class="control"><span class="fa fa-pause"></span></button>
+      <button class="control"><span class="fa fa-backward"></span></button>
+      <button class="control"><span class="fa fa-forward"></span></button>      
     </div>
+    
   </footer>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>

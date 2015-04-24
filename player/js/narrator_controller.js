@@ -25,6 +25,8 @@ Narrator = function() {
 		console.log( "pause" );
 	}
 	this.stop = function() {
+		this.n.getItem( this.playhead ).reset();
+		gui.clearScreens();
 		this.playing = false;
 		console.log( "stop" );
 		this.playhead = 0;
@@ -49,6 +51,10 @@ Narrator = function() {
 		}
 
 	}
+
+	this.previousContent = function() {}
+	this.nextContent = function() {}
+
 
 	this.addSection = function( section ) {		
 		if( section.getType() === "section")
