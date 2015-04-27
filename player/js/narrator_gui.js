@@ -89,6 +89,12 @@ NarratorGUI = function( parent ) {
 
 			}
 
+			if( mediaItem.getType() === "video" ) {
+				console.log( "VIDEO:", mediaItem )
+
+			}
+
+
 /*
 			if( key === "imagenes" ) {
 				content = $('<img>').attr('src', mediaItem );

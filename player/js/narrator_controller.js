@@ -171,36 +171,55 @@ Narrator = function() {
 
 									 		
 									 		var mediaObject;
-									 		if( type === "texts" )
-								 				mediaObject = new Text('text');
+									 		var mediaType = "";
+									 		if( type === "texts" ) {
+								 				mediaType = 'text';
+								 				mediaObject = new Text(mediaType);
+									 		}
 
-									 		if( type === "images" )
-								 				mediaObject = new Image('img');
+									 		if( type === "images" ) {
+								 				mediaType = 'image';
+								 				mediaObject = new Image(mediaType);
+									 		}
 
-									 		if( type === "videos" )
-								 				mediaObject = new Video('video');
+									 		if( type === "videos" ) {
+								 				mediaType = 'video';
+								 				mediaObject = new Video(mediaType);
+									 		}
 
-									 		if( type === "audios" )
-								 				mediaObject = new Sound('sound');
+									 		if( type === "audios" ) {
+								 				mediaType = 'sound';
+								 				mediaObject = new Sound(mediaType);
+									 		}
 
-									 		if( type === "tweet_ids" )
-								 				mediaObject = new Tweet('tweet');
+									 		if( type === "tweet_ids" ) {
+								 				mediaType = 'tweet';
+								 				mediaObject = new Tweet(mediaType);
+									 		}
 
-									 		if( type === "urls" )
-								 				mediaObject = new Url('url');
+									 		if( type === "urls" ) {
+								 				mediaType = 'url';
+								 				mediaObject = new Url(mediaType);
+									 		}
 
-									 		if( type === "htmls" )
-								 				mediaObject = new Embed('html');
+									 		if( type === "htmls" ) {
+								 				mediaType = 'html';
+								 				mediaObject = new Embed(mediaType);
+									 		}
 
-											if( type === "vimeoids" )
-								 				mediaObject = new VimeoID('html');
+											if( type === "vimeoids" ) {
+								 				mediaType = 'vimeoid';
+								 				mediaObject = new VimeoID(mediaType);
+											}
 
 
 								 			if( typeof(mediaObject)!="undefined") {
 							 					mediaObject.setMedia( mediaItem );
 							 					mediaObject.playback = contents[k].playback;	
 							 					contentObject.addItem( mediaObject );
+						 						contentObject.setType( mediaType );
 								 			}
+
 
 						 					
 
