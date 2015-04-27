@@ -325,6 +325,7 @@ Narrator = function() {
 					if(currentContent === "done"  ) {
 
 						currentSequence = currentSection.next()
+						currentSequence.startTime = newTime;
 						clog("currSQ")
 						clog(currentSequence)
 					
