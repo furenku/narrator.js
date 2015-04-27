@@ -248,9 +248,8 @@ Narrator = function() {
 	this.narrate = function() {
 		
 		var newTime = new Date().getTime();
-		console.log( newTime );
 		lastTime = newTime;
-		console.log(  newTime,  currentContent.startTime + currentContent.getItem(0).playback.duracion * 1000 );
+
 		if(  newTime > currentContent.startTime + currentContent.getItem(0).playback.duracion * 1000 ){
 			currentContent.done = true;
 		
@@ -258,32 +257,43 @@ Narrator = function() {
 		if( currentContent.done ) {
 			console.log( "done!" )
 		}
-		/*
+
 		if( ! currentSection )
 			clearInterval(this.narration)
 		else {
 			//currentContent = currentSequence.next();
-			if( typeof( currentContent ) == "undefined" || currentContent === "done" )
+			if( typeof( currentContent ) == "undefined" || ! currentContent ) //|| currentContent === "done" )
+			{
+
 				currentContent = currentSequence.next();
+				
+				currentContent.startTime = newTime;
+
+			}
 			else {
-				if( currentContent.done  )
+				if( currentContent.done  ) {
+
 					currentContent = currentSequence.next();
+					currentContent.startTime = newTime;
+				}
 			}
 		
 			if( currentContent != false && currentContent != "done" && typeof( currentContent ) != "undefined" ) {
-				console.log("currentContent:",currentContent)
 				if( ! currentContent.started  ) {
+					
+					console.log("currentContent:",currentContent)
+					
 					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
 						//lastTime = new Date();
-						gui.openContent( currentContent.getItems()[i] )
+						//gui.openContent( currentContent.getItems()[i] )
 						//var contentType = currentContent.getItems()[i].getType();
 
 					}
 					currentContent.started = true;
 				}	
 			} 
-
-			if(currentContent === "done" || ! currentContent ) {
+/*
+			if(currentContent === "done"  ) {
 				currentContent = currentSequence.next();
 				if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {
 					var items = currentSequence.getItems();
@@ -295,17 +305,16 @@ Narrator = function() {
 
 				
 			}			
-		
+*/		
 			if( currentSequence==="done") narrator.fwd();
 
 			
 		}
 
-		*/
+
 
 		console.log("narrate!")
 	}
-
 
 
 }
