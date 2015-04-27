@@ -99,7 +99,7 @@ NarratorGUI = function( parent ) {
 					video.addClass('wh100');
 					video.append( src );
 					$('.pantalla').eq(1).html( video );
-					$('.pantalla').eq(1).find( 'video' ).get(0).currentTime = 0;
+					//$('.pantalla').eq(1).find( 'video' ).get(0).currentTime = 0;
 				} else {
 					$('.pantalla').eq(1).find('video').append(src);
 				}
