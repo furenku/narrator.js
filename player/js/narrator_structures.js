@@ -5,6 +5,10 @@ Content = function( name_ ) {
 
 	this.type = "content";
 
+	
+	this.startTime = 0;
+	this.ellapsedTime = 0;
+
 }
 
 inheritPrototype( Content, ElementList );

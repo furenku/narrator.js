@@ -63,6 +63,8 @@ Narrator = function() {
 			currentSection.reset();
 			currentSequence = currentSection.getItem(0); 
 			currentContent = currentSequence.getItem(0); 
+
+			currentContent.startTime = currentSequence.startTime = new Date().getTime();
 		}
 		console.log(currentSection)
 		console.log(currentSequence)
@@ -196,6 +198,7 @@ Narrator = function() {
 
 								 			if( typeof(mediaObject)!="undefined") {
 							 					mediaObject.setMedia( mediaItem );
+							 					mediaObject.playback = contents[k].playback;	
 							 					contentObject.addItem( mediaObject );
 								 			}
 
@@ -243,9 +246,15 @@ Narrator = function() {
 
 	lastTime = 0;
 	this.narrate = function() {
-
-		console.log( new Date() - lastTime );
-		lastTime = new Date();
+		
+		var newTime = new Date().getTime();
+		console.log( newTime );
+		lastTime = newTime;
+		console.log(  newTime,  currentContent.startTime + currentContent.getItem(0).playback.duracion * 1000 );
+		if(  newTime > currentContent.startTime + currentContent.getItem(0).playback.duracion * 1000 ){
+			currentContent.done = true;
+		
+		}
 		if( currentContent.done ) {
 			console.log( "done!" )
 		}
