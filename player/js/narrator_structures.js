@@ -32,6 +32,9 @@ Sequence = function( name_ ) {
 
 	this.type = "sequence";
 
+	this.startTime = 0;
+	this.ellapsedTime = 0;
+
 }
 
 inheritPrototype( Sequence, ElementList );

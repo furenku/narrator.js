@@ -11,16 +11,19 @@ Narrator = function() {
 	currentSequence = 0;
 	currentContent = 0;
 
+
+	this.narration = 0;
+
+
 	this.play = function() {
 		n.jump( this.playhead );
-		
 	}
 	this.pause = function() {
 		this.playing = false;
 		console.log( "pause" );
 	}
 	this.stop = function() {
-		clearInterval(narration)
+		clearInterval(this.narration)
 
 		this.n.getItem( this.playhead ).reset();
 		gui.clearScreens();
@@ -38,22 +41,21 @@ Narrator = function() {
 		this.jump( this.playhead )
 	}
 	this.jump = function( index ) {
-		
-		clearInterval(narration)
-		narration = setInterval( n.narrate,1);
 
-		this.playing = true;
-		console.log( "play" );
+		this.playhead = index;
+
+		gui.clearScreens();
+
+		this.n.getItem( this.playhead ).reset();
+		
 
 		//clog( currentSection );
-		clearInterval(narration)
-		narration = setInterval( n.narrate,100);
-		gui.removeCover();
 		//this.jump( this.playhead ):
 
 		gui.removeCover();
 
 		currentSection = this.n.getItem( index );
+
 		
 		if( currentSection == false ) {
 			this.stop();
@@ -62,12 +64,21 @@ Narrator = function() {
 			currentSequence = currentSection.getItem(0); 
 			currentContent = currentSequence.getItem(0); 
 		}
-		this.playhead = index;
+		console.log(currentSection)
+		console.log(currentSequence)
+		console.log(currentContent)
 
 		$('.markers .marker').siblings().removeClass('current')
 		$('.markers .marker').eq(index).addClass('current')
 		
+		gui.removeCover();
+		
 
+		if(typeof(this.narration)!="undefined")
+		clearInterval(this.narration)
+		this.narration = setInterval( n.narrate,1000);
+
+		this.playing = true;
 	}
 
 	this.previousContent = function() {
@@ -76,6 +87,7 @@ Narrator = function() {
 	this.nextContent = function() {
 		currentContent = currentSequence.next();
 		if(currentContent==="done" && typeof( currentContent ) != "undefined" ) {
+			console.log("currentContent",done)
 		currentContent.started=false;
 
 			currentSequence = currentSection.next();
@@ -89,6 +101,9 @@ Narrator = function() {
 		}
 		if(currentSection==="done")
 			this.stop()
+
+		console.log(currentContent)
+	
 	}
 
 
@@ -204,16 +219,15 @@ Narrator = function() {
 		});
 	}
 
-	narration = 0;
 
 	this.testDB = function() {
-		console.log("testDNB!");
+		//console.log("testDNB!");
 //console.log("sectionObjects",sectionObjects)
 		loadSections( sectionObjects );
 		drawSections( sectionsHTML );
 
 
-		gui.placeCover();
+		//gui.placeCover();
 
 		
 	}
@@ -227,21 +241,28 @@ Narrator = function() {
 		return currentContent;
 	}
 
+	lastTime = 0;
 	this.narrate = function() {
+
+		console.log( new Date() - lastTime );
+		lastTime = new Date();
+		if( currentContent.done ) {
+			console.log( "done!" )
+		}
+		/*
 		if( ! currentSection )
-			clearInterval(narration)
+			clearInterval(this.narration)
 		else {
 			//currentContent = currentSequence.next();
 			if( typeof( currentContent ) == "undefined" || currentContent === "done" )
 				currentContent = currentSequence.next();
 			else {
-				console.log("test:",currentContent)
 				if( currentContent.done  )
 					currentContent = currentSequence.next();
 			}
 		
 			if( currentContent != false && currentContent != "done" && typeof( currentContent ) != "undefined" ) {
-				console.log("test:",currentContent)
+				console.log("currentContent:",currentContent)
 				if( ! currentContent.started  ) {
 					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
 						//lastTime = new Date();
@@ -270,6 +291,10 @@ Narrator = function() {
 
 			
 		}
+
+		*/
+
+		console.log("narrate!")
 	}
 
 

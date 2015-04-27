@@ -18,6 +18,8 @@ $.when(
 
     narrator = n = new Narrator();
 
+
+    console.log( n )
     
     //n.testVimeo();
 
