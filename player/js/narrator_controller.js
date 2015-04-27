@@ -284,8 +284,7 @@ Narrator = function() {
 					console.log("currentContent:",currentContent)
 					
 					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
-						//lastTime = new Date();
-						//gui.openContent( currentContent.getItems()[i] )
+						gui.openContent( currentContent.getItems()[i] )
 						//var contentType = currentContent.getItems()[i].getType();
 
 					}

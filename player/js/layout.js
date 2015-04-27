@@ -4,11 +4,11 @@ var wH = $(window).height();
 
 function crearPantallas() {
 
-  var pW = wW;
-  var pH = wW / (16/9);
+  var pW = wW / 2 ;
+  var pH = ( wW / 2 ) / (16/9);
   var pantallas = Array();
   pantallas.push({name:"A",width: pW,height:pH});
-  //pantallas.push({name:"B",width: pW,height:pH});
+  pantallas.push({name:"B",width: pW,height:pH});
   
   /*
   pantallas.push({name:"sim_2",width:300,height:300});

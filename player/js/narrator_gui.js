@@ -63,14 +63,15 @@ NarratorGUI = function( parent ) {
 
 	this.openContent = function( mediaItem )
 	{
+		clog(mediaItem.getType())
 		if( mediaItem != "" ) {
 
 			if( mediaItem.getType() === "image" ) {
-/*				
+
 				content = $('<img>').attr('src', mediaItem.media );
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );												
-				$('#test').html( content )
-*/
+				$('.pantalla').eq(1).html( content )
+
 			}
 
 			if( mediaItem.getType() === "vimeoid" ) {
@@ -78,15 +79,17 @@ NarratorGUI = function( parent ) {
 				this.openVimeo( id );
 				console.log( "VIMEO:", mediaItem )
 			}
-/*
-			if( key === "textos" ) {
-				var vtable = makeDiv("","vcenter_content").html( content );
+
+			if( mediaItem.getType() === "text" ) {
+				var vtable = makeDiv("","vcenter_content").html( mediaItem.media );
 				vtable = makeDiv("","vcenter_container").html( vtable );
 				vtable = makeDiv("","vcenter_table").html( vtable );
 				content = vtable;
+				$('.pantalla').eq(1).html( content )
 
 			}
 
+/*
 			if( key === "imagenes" ) {
 				content = $('<img>').attr('src', mediaItem );
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',contenido.info.title).attr('data-title','').html( content );												
