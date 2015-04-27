@@ -269,13 +269,6 @@ Narrator = function() {
 		var newTime = new Date().getTime();
 		lastTime = newTime;
 
-		if(  newTime > currentContent.startTime + currentContent.getItem(0).playback.duracion * 1000 ){
-			currentContent.done = true;
-		
-		}
-		if( currentContent.done ) {
-			console.log( "done!" )
-		}
 
 		if( ! currentSection )
 			clearInterval(this.narration)
@@ -288,42 +281,74 @@ Narrator = function() {
 				
 				currentContent.startTime = newTime;
 
+				
+
 			}
 			else {
-				if( currentContent.done  ) {
 
+				if( currentContent != "done" ) {
+
+					var timeToStartContent = false;
+
+					var contentTime = currentSequence.startTime + ( currentContent.getItem(0).playback.inicio * 1000 ) ;
+
+					console.log("cCCC", currentSequence.startTime , currentContent.startTime )
+
+					if( newTime > contentTime ) timeToStartContent = true;
+
+					if( ! currentContent.started && timeToStartContent ) {
+						
+						console.log("currentContent:",currentContent)
+						
+						for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
+							gui.openContent( currentContent.getItems()[i] )
+							//var contentType = currentContent.getItems()[i].getType();
+
+						}
+						currentContent.started = true;
+					}	
+					if(  newTime > contentTime + currentContent.getItem(0).playback.duracion * 1000 ){
+						currentContent.done = true;
+					
+					}
+					if( currentContent.done ) {
+						console.log( "done!" )
+					
+						currentContent = currentSequence.next();
+						currentContent.startTime = newTime;
+
+						gui.clearContentScreen();
+					}
+				}
+				else {
 					currentContent = currentSequence.next();
-					currentContent.startTime = newTime;
+					if(currentContent === "done"  ) {
+
+						currentSequence = currentSection.next()
+						clog("currSQ")
+						clog(currentSequence)
+					
+						if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {
+							var items = currentSequence.getItems();
+							for( var h = 0; h<items.length; h++) {
+								items[h].started=false;
+								currentSequence.started=false;
+							}
+						}
+
+						else {
+						}
+
+						
+					}	
 				}
 			}
 		
 			if( currentContent != false && currentContent != "done" && typeof( currentContent ) != "undefined" ) {
-				if( ! currentContent.started  ) {
-					
-					console.log("currentContent:",currentContent)
-					
-					for (var i = currentContent.getItems().length - 1; i >= 0; i--)		 {
-						gui.openContent( currentContent.getItems()[i] )
-						//var contentType = currentContent.getItems()[i].getType();
-
-					}
-					currentContent.started = true;
-				}	
 			} 
-/*
-			if(currentContent === "done"  ) {
-				currentContent = currentSequence.next();
-				if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {
-					var items = currentSequence.getItems();
-					for( var h = 0; h<items.length; h++) {
-						items[h].started=false;
-						currentSequence.started=false;
-					}
-				}
 
-				
-			}			
-*/		
+					
+
 			if( currentSequence==="done") narrator.fwd();
 
 			

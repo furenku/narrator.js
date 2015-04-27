@@ -245,5 +245,7 @@ NarratorGUI = function( parent ) {
 		$('#iframe').remove();
 	}
 
-
+	this.clearContentScreen = function() {
+		$('.pantalla').eq(1).html('');
+	}
 }
