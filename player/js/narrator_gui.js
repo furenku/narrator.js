@@ -2,7 +2,7 @@ NarratorGUI = function( parent ) {
 
 	gui = this;
 	gui.controller = parent;
-	console.log(this.controller.currentContent )
+	//console.log(this.controller.currentContent )
 	this.setupGUI = function(){
 		console.log( "IMPL: crear botones" )
 		// crear botones para distintas secciones
@@ -77,6 +77,7 @@ NarratorGUI = function( parent ) {
 			if( mediaItem.getType() === "vimeoid" ) {
 				id = mediaItem.media;
 				this.openVimeo( id );
+				n.vimeoPlaying();
 				console.log( "VIMEO:", mediaItem )
 			}
 
@@ -98,6 +99,7 @@ NarratorGUI = function( parent ) {
 					video.addClass('wh100');
 					video.append( src );
 					$('.pantalla').eq(1).html( video );
+					$('.pantalla').eq(1).find( 'video' ).get(0).currentTime = 0;
 				} else {
 					$('.pantalla').eq(1).find('video').append(src);
 				}
@@ -173,9 +175,12 @@ NarratorGUI = function( parent ) {
 	    //status.text('paused');
 	}
 
+	this.onSeek = function(data, id) {
+		n.vimeoSeek(data)
+	}
 	this.onFinish = function(id) {
-	    console.log('finished');
-	    n.getCurrentContent().done = true;
+	    n.videoPosition = -1;
+	    n.vimeoFinished();
 	    gui.clearScreens();
 	    //switchit();
 	    //this.controller.currentContent.done = true;
@@ -184,7 +189,8 @@ NarratorGUI = function( parent ) {
 
 
 	this.onPlayProgress = function(data, id) {
-	    console.log(n.getCurrentContent().name);
+	    //console.log(n.getCurrentContent().name);
+	    n.videoFwd( data );
 	    //status.text(data.seconds + 's played');
 	}
 
@@ -206,6 +212,7 @@ NarratorGUI = function( parent ) {
 
 		    player.addEvent('pause', gui.onPause);
 		    player.addEvent('finish', gui.onFinish);
+		    player.addEvent('seek', gui.onSeek);
 		    player.addEvent('playProgress', gui.onPlayProgress);
 		    
 		    player.api("play");

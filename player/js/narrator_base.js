@@ -111,4 +111,5 @@ ElementList.prototype.previous = function() {
 ElementList.prototype.reset = function() {
 	this.done = false;
 	this.currentItem = 0;
+	this.started = false;
 }

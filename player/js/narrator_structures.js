@@ -5,7 +5,7 @@ Content = function( name_ ) {
 
 	this.type = "content";
 
-	
+
 	this.startTime = 0;
 	this.ellapsedTime = 0;
 
@@ -38,6 +38,8 @@ Sequence = function( name_ ) {
 
 	this.startTime = 0;
 	this.ellapsedTime = 0;
+
+	this.vimeoPlaying = false;
 
 }
 
