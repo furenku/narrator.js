@@ -90,6 +90,17 @@ NarratorGUI = function( parent ) {
 			}
 
 			if( mediaItem.getType() === "video" ) {
+				
+				var src = $('<source>').attr('src',mediaItem.media );
+				
+				if( $('.pantalla').find('video').length == 0 ) {
+					var video = $('<video>').attr('autoplay','autoplay');
+					video.addClass('wh100');
+					video.append( src );
+					$('.pantalla').eq(1).html( video );
+				} else {
+					$('.pantalla').eq(1).find('video').append(src);
+				}
 				console.log( "VIDEO:", mediaItem )
 
 			}
