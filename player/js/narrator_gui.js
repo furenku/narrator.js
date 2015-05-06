@@ -4,7 +4,7 @@ NarratorGUI = function( parent ) {
 	gui.controller = parent;
 	//console.log(this.controller.currentContent )
 	this.setupGUI = function(){
-		console.log( "IMPL: crear botones" )
+
 		// crear botones para distintas secciones
 
 	}
@@ -23,16 +23,36 @@ NarratorGUI = function( parent ) {
 	})
 
 	this.createSectionMenu = function( sections ) {
-		for( i in sections ) {
+
+		for( var i = 0; i < sections.length; i++ ) {
+			
+			sectionSequences = [];
+
+			for( var j = 0; j < sections[i].sequences.length; j++ ) {
+				sectionSequences.push( sections[i].sequences[j] );
+			
+			}
+			
+			var seqdiv; 
+
 			var div = makeDiv( 
 				"section_menu_"+sections[i].name,
 				"marker section_menu_option"
 			)
 			div.html( '<button class="secciones_button">' + sections[i].name +  '</button>');
-
 			div.css({
 				left: ( (i/sections.length)*$('#timeline_secciones').width() ) + ( ( $('#timeline_secciones').width()/sections.length ) / 4 )
 			})
+
+			for( var j = 0; j < sectionSequences.length; j++ ) {
+				seqdiv = makeDiv( 
+					"sequence_menu_"+sectionSequences[j].name,
+					"marker sequence_menu_option hidden"
+				)
+				seqdiv.html( '<button class="secciones_button">' + sectionSequences[j].name +  '</button>');
+				div.append( seqdiv )
+			}
+			
 
 
 			$('header #timeline_secciones .markers').append( div )
@@ -40,6 +60,21 @@ NarratorGUI = function( parent ) {
 			div.click(function(){
 				console.log( "jump to:" + $(this).index() );
 				narrator.jump( $(this).index() );
+				var seqdivs = div.find('.sequence_menu_option');
+				seqdivs.each(function(i){
+					
+					var seqdiv = $(this);
+					
+					seqdiv.removeClass('hidden')
+
+					$('header #timeline_secuencias .markers').append( seqdiv )
+					seqdiv.css({
+						left: ( (i/seqdivs.length)*$('#timeline_secuencias').width() ) + ( ( $('#timeline_secuencias').width()/seqdivs.length ) / 4 )
+					});
+					seqdiv.find('button').click(function(j){
+						narrator.jumpToSequence( $(this).parent().index() );
+					})
+				});
 			})
 
 		}
@@ -63,7 +98,6 @@ NarratorGUI = function( parent ) {
 
 	this.openContent = function( mediaItem )
 	{
-		clog(mediaItem.getType())
 		if( mediaItem != "" ) {
 
 			if( mediaItem.getType() === "image" ) {
@@ -78,7 +112,7 @@ NarratorGUI = function( parent ) {
 				id = mediaItem.media;
 				this.openVimeo( id );
 				n.vimeoPlaying();
-				console.log( "VIMEO:", mediaItem )
+				//console.log( "VIMEO:", mediaItem )
 			}
 
 			if( mediaItem.getType() === "text" ) {
@@ -103,8 +137,10 @@ NarratorGUI = function( parent ) {
 				} else {
 					$('.pantalla').eq(1).find('video').append(src);
 				}
-				console.log( "VIDEO:", mediaItem )
 
+				$('.pantalla').eq(1).show();
+				$('.pantalla').eq(1).fadeIn();
+		   	
 			}
 
 
@@ -168,6 +204,8 @@ NarratorGUI = function( parent ) {
 			mediaP.css({ maxHeight: pantalla.width() });
 */
 		}
+
+
 	}
 
 
@@ -182,6 +220,7 @@ NarratorGUI = function( parent ) {
 	    n.videoPosition = -1;
 	    n.vimeoFinished();
 	    gui.clearScreens();
+
 	    //switchit();
 	    //this.controller.currentContent.done = true;
 
@@ -237,13 +276,17 @@ NarratorGUI = function( parent ) {
 
 	this.openVimeo = function( id ) {
 		clog("openVimeo")
-
 		this.createVimeo(id);
+	}
 
-		   
-		//setInterval(function(){switchit();},3000);
-		    
-	    
+	this.seekVimeo = function ( seconds ) {
+		var iframe = $('#player1')[0],
+	    player = $f(iframe),
+	    status = $('.status');
+
+
+		player.api("seekTo",seconds);
+		narrator.videoPosition = seconds;
 	}
 
 
@@ -253,6 +296,21 @@ NarratorGUI = function( parent ) {
 	}
 
 	this.clearContentScreen = function() {
+		//console.log("clera SSSSSCCCC")
+		//$('.pantalla').eq(1).find('video').fadeOut();
+		$('.pantalla').eq(1).hide();
+		$('.pantalla').eq(1).fadeOut(function(){
+		},1000)
 		$('.pantalla').eq(1).html('');
 	}
+
+
+	this.disableNext = function() {
+		$('#next_arrow').addClass('disabled')
+	}
+
+	this.enableNext = function() {
+		$('#next_arrow').removeClass('disabled')
+	}
+
 }

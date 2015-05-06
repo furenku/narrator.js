@@ -76,7 +76,7 @@
         <div class="vcenter_table">
           <div class="vcenter_container">
             <div class="vcenter_content">
-              <button id="next_arrow"><span class="fa fa-forward"></span></button>
+              <button id="next_arrow" class="disabled"><span class="fa fa-forward"></span></button>
             </div>
           </div>
         </div>      

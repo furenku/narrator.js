@@ -4,8 +4,8 @@ var wH = $(window).height();
 
 function crearPantallas() {
 
-  var pW = wW / 2 ;
-  var pH = ( wW / 2 ) / (16/9);
+  var pW = wW / 2;
+  var pH = ( pW ) / (16/9);
   var pantallas = Array();
   pantallas.push({name:"A",width: pW,height:pH});
   pantallas.push({name:"B",width: pW,height:pH});
@@ -19,7 +19,7 @@ function crearPantallas() {
   var scrH = 0;
 
 
-    for(i in pantallas) {
+    for(var i= 0; i< pantallas.length; i++) {
 
       var pantalla = $('<div>');
       pantalla.addClass("pantalla");
@@ -30,6 +30,7 @@ function crearPantallas() {
       pantalla.width( pantallas[i].width ).height( pantallas[i].height ).css({    left: scrW, top: scrH });
 
       scrW = scrW + pantallas[i].width;
+      //scrW = 0;
           
       var cnt = '';
       

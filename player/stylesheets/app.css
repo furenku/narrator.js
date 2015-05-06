@@ -9726,7 +9726,15 @@ body {
 #transport_play, #transport_stop {
   background-color: #2a2a2a !important;
 }
-/* line 598, ../scss/app.scss */
+/* line 597, ../scss/app.scss */
+.secciones_button.disabled,
+#descarga.disabled,
+#prev_arrow.disabled, #next_arrow.disabled,
+#transport_play.disabled, #transport_stop.disabled {
+  color: #1a1a1a;
+  background-color: #111;
+}
+/* line 601, ../scss/app.scss */
 .secciones_button:hover, .secciones_button:focus,
 #descarga:hover,
 #descarga:focus,
@@ -9738,7 +9746,7 @@ body {
   border: none;
 }
 
-/* line 605, ../scss/app.scss */
+/* line 608, ../scss/app.scss */
 button span {
   padding: 0 15px;
 }

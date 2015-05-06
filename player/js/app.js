@@ -12,28 +12,29 @@ var fitH;
 fitH();
 fillH();
 crearPantallas();
+$('.pantalla').eq(1).fadeOut();
 mediaScroll();
 timeline();
 
 
-$('#pantallas #clear').click(function(){
-	$('#pantallas .pantalla').html('');
-})
+// $('#pantallas #clear').click(function(){
+// 	$('#pantallas .pantalla').html('');
+// })
 
 
-$('#pantallas #clear1').click(function(){
-	$('#pantallas .pantalla').eq(0).html('');
-})
+// $('#pantallas #clear1').click(function(){
+// 	$('#pantallas .pantalla').eq(0).html('');
+// })
 
 
-$('#pantallas #clear2').click(function(){
-	$('#pantallas .pantalla').eq(1).html('');
-})
+// $('#pantallas #clear2').click(function(){
+// 	$('#pantallas .pantalla').eq(1).html('');
+// })
 
 
-$('#pantallas #clear3').click(function(){
-	$('#pantallas .pantalla').eq(2).html('');
-})
+// $('#pantallas #clear3').click(function(){
+// 	$('#pantallas .pantalla').eq(2).html('');
+// })
 
 
 /*

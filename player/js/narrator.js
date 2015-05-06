@@ -16,20 +16,11 @@ $.when(
 ).done(function(){
 
 
-    narrator = n = new Narrator();
 
+    $(document).ready(function(){
 
-    console.log( n )
-    
-    //n.testVimeo();
-
-    n.loadDB( n.testDB );
-   // n.gui.controller=n;
-
-	console.log("NARRATOR READY!")
-
-	$(document).ready(function(){
-
+        narrator = n = new Narrator();
+        n.loadDB( n.testDB );
 	
 	})
 
