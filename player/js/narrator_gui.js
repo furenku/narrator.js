@@ -9,12 +9,16 @@ NarratorGUI = function( parent ) {
 
 	}
 
-	$('#prev_arrow').click(function(){
-		narrator.previousContent();
+	$('#prev_arrow, #transport_prev').click(function(){
+		if( ! $(this).hasClass('disabled') ) {			
+			narrator.previousContent();
+		}
 	})
-	$('#next_arrow').click(function(){
-		gui.clearContentScreen();
-		narrator.nextContent( true );
+	$('#next_arrow, #transport_next').click(function(){
+		if( ! $(this).hasClass('disabled') ) {			
+			gui.clearContentScreen();
+			narrator.nextContent( true );
+		}
 	})
 	$('#transport_play').click(function(){
 		narrator.play();
@@ -328,10 +332,12 @@ NarratorGUI = function( parent ) {
 
 	this.disableNext = function() {
 		$('#next_arrow').addClass('disabled')
+		$('#transport_next').addClass('disabled')
 	}
 
 	this.enableNext = function() {
 		$('#next_arrow').removeClass('disabled')
+		$('#transport_next').removeClass('disabled')
 	}
 
 }

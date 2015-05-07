@@ -156,7 +156,7 @@ tipografia
 
 
 body {
-	background-color: #111;
+	background-color: #080808;
 	font-family: "Open Sans";
 }
 
@@ -197,12 +197,12 @@ body {
 
 .progress_bar_holder{
 	position: relative;
-	background-color: #222;
+	//background-color: #222;
 	&,div {
 		@extend .w100;
 	}
 	
-	height: $spacing;
+	height: $spacing * 1.5;
 	padding: $spacing / 3;
 	
 	.progress_bar {
@@ -231,6 +231,12 @@ body {
 			width:200px;
 			height: $spacing / 2;
 			font-size: $fontS;
+			
+			button {
+				padding: $spacing / 4 $spacing / 2;
+				height: $spacing * 1.45;
+			}
+			//margin-top: $spacing;
 			//padding: $spacing / 3 0;
 
 			&.current {
@@ -353,6 +359,9 @@ body {
 
 #player {
 	background-color: #000;
+	&,.nav_arrow {
+		padding: 0;
+	}
 
 	#pantallas {
 
@@ -602,16 +611,17 @@ body {
 .secciones_button,
 #descarga,
 #prev_arrow, #next_arrow,
-#transport_play, #transport_stop {
+#transport_play, #transport_stop,
+#transport_next, #transport_prev {
 	@extend .toggle;
-	background-color: #2a2a2a !important;
+	background-color: #0a0a0a !important;
 	
 	&.disabled {
-		color:#1a1a1a;
-		background-color: #111
+		color:#222;
+		background-color: #0a0a0a
 	}
 	&:hover,&:focus{		
-		background-color: #3f3f3f !important;
+		background-color: #000 !important;
 		border: none;
 	}
 }
@@ -619,4 +629,36 @@ body {
 
 button span {
 	padding: 0 $spacing / 2;
+}
+
+
+button {
+	background-color: #0a0a0a !important;
+	
+	&:hover,&:focus {
+		outline: 0;
+		background-color: #000 !important;
+
+	}
+	padding: $spacing / 2 $spacing;
+	height: $spacing * 2;
+}
+
+
+#prev_arrow, #next_arrow {
+	padding: $spacing $spacing / 3 !important;
+	height: $spacing * 4;
+
+	background-color: #000 !important;
+	color:#aaa;
+	&:hover,&:focus {
+		background-color: #0a0a0a !important;
+		color:#fff;
+
+	}
+	&.disabled {
+		color:#222;
+		background-color: #000
+	}
+
 }

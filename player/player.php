@@ -28,8 +28,8 @@
     <div id="timelines" class="xrow">
       <div id="timeline_secciones" class="xrow">
       <!-- <div id="timeline_secciones" class="small-10 small-offset-1 columns"> -->
-        <!-- <div class="progress_bar_holder">     
-          <div class="progress_bar">      
+        <div class="progress_bar_holder">     
+        <!--<div class="progress_bar">      
             <div class="progress"></div>
           </div> -->
           <div class="markers">
@@ -39,8 +39,8 @@
 
       </div>
       <div id="timeline_secuencias">
-       <!--  <div class="progress_bar_holder">     
-          <div class="progress_bar">      
+       <div class="progress_bar_holder">     
+       <!--  <div class="progress_bar">      
             <div class="progress"></div>
           </div> -->
 
@@ -60,7 +60,7 @@
         <div class="vcenter_table">
           <div class="vcenter_container">
             <div class="vcenter_content">
-              <button id="prev_arrow"><span class="fa fa-backward"></span></button>
+              <button id="prev_arrow" class="disabled"><span class="fa fa-backward"></span></button>
             </div>
           </div>
         </div>
@@ -97,6 +97,8 @@
     <div id="footer_controles" class="small-6 columns text-center">
       <button id="transport_play" class="control"><span class="fa fa-play"></span></button>
       <button id="transport_stop" class="control"><span class="fa fa-stop"></span></button>
+      <button id="transport_prev" class="control disabled"><span class="fa fa-backward"></span></button>
+      <button id="transport_next" class="control disabled"><span class="fa fa-forward"></span></button>
         
     </div>
     <div id="footer_descarga" class="small-3 columns fontS text-right">
