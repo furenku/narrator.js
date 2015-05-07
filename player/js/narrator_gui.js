@@ -111,7 +111,7 @@ NarratorGUI = function( parent ) {
 
 				content = $('<img>').attr('src', mediaItem.media );
 
-				console.log( "IW",content )
+				console.log( "IW",content[0].naturalWidth )
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );		
 				var vtable = makeDiv("","vcenter_content imgLiquid imgLiquidNoFill").html( content );
 				vtable = makeDiv("","vcenter_container").html( vtable );
