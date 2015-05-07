@@ -28,10 +28,10 @@
     <div id="timelines" class="xrow">
       <div id="timeline_secciones" class="xrow">
       <!-- <div id="timeline_secciones" class="small-10 small-offset-1 columns"> -->
-        <div class="progress_bar_holder">     
+        <!-- <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
-          </div>
+          </div> -->
           <div class="markers">
             
           </div>
@@ -39,10 +39,10 @@
 
       </div>
       <div id="timeline_secuencias">
-        <div class="progress_bar_holder">     
+       <!--  <div class="progress_bar_holder">     
           <div class="progress_bar">      
             <div class="progress"></div>
-          </div>
+          </div> -->
 
           <div class="markers">
             
