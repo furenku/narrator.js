@@ -117,7 +117,7 @@ NarratorGUI = function( parent ) {
 				content = vtable;
 				$('.pantalla').eq(1).html( content )
 				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
-														
+
 				$('.pantalla').eq(1).html( content )
 
 			}
@@ -129,7 +129,7 @@ NarratorGUI = function( parent ) {
 				//console.log( "VIMEO:", mediaItem )
 			}
 
-			if( mediaItem.getType() === "text" ) {
+			/*if( mediaItem.getType() === "text" ) {
 				var vtable = makeDiv("","vcenter_content").html( mediaItem.media );
 				vtable = makeDiv("","vcenter_container").html( vtable );
 				vtable = makeDiv("","vcenter_table").html( vtable );
@@ -137,7 +137,7 @@ NarratorGUI = function( parent ) {
 				$('.pantalla').eq(1).html( content )
 				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 
-			}
+			}*/
 
 			if( mediaItem.getType() === "video" ) {
 				
@@ -158,7 +158,6 @@ NarratorGUI = function( parent ) {
 		   	
 			}
 
-/*
 			if( mediaItem.getType() === "text" ) {
 
 				var text = mediaItem.media;
@@ -176,7 +175,7 @@ NarratorGUI = function( parent ) {
 				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 			}
 
-*/
+
 /*
 			if( key === "imagenes" ) {
 				content = $('<img>').attr('src', mediaItem );
