@@ -21,6 +21,7 @@ $.when(
 
         narrator = n = new Narrator();
         n.loadDB( n.testDB );
+        
 	
 	})
 

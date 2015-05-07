@@ -7,6 +7,8 @@ Narrator = function() {
 	narrator = this;	
 	gui = new NarratorGUI( this );
 
+	gui.placeCover();
+	
 	currentSection = 0;
 	currentSequence = 0;
 	currentContent = 0;
