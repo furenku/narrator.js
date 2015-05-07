@@ -120,7 +120,7 @@ NarratorGUI = function( parent ) {
 
 				$('.pantalla').eq(1).html( content )
 
-				$('.imgLiquidNoFill').imgLiquid({fill:false})
+				//$('.imgLiquidNoFill').imgLiquid({fill:false})
 
 			}
 
