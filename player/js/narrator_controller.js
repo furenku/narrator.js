@@ -17,6 +17,9 @@ Narrator = function() {
 	this.videoPosition = -1;
 
 
+	lastTime = 0;
+	preseektime = 1;
+	
 
 	this.play = function() {
 		n.jump( this.playhead );
@@ -30,6 +33,7 @@ Narrator = function() {
 
 		this.n.getItem( this.playhead ).reset();
 		gui.clearScreens();
+		gui.clearContentScreen();
 		this.playing = false;
 		console.log( "stop" );
 		this.playhead = 0;
@@ -49,14 +53,6 @@ Narrator = function() {
 
 		gui.clearScreens();
 
-		this.n.getItem( this.playhead ).reset();
-		
-
-		//console.log( currentSection );
-		//this.jump( this.playhead ):
-
-		gui.removeCover();
-
 		currentSection = this.n.getItem( index );
 
 		
@@ -64,9 +60,9 @@ Narrator = function() {
 			this.stop();
 		} else {
 			currentSection.reset();
-			currentSequence = currentSection.getItem(0); 
-			currentContent = currentSequence.getItem(0); 
-
+			currentSequence = false;
+			currentContent = false;
+			narrator.nextContent();
 			currentContent.startTime = currentSequence.startTime = new Date().getTime();
 		}
 /*
@@ -74,6 +70,7 @@ Narrator = function() {
 		console.log(currentSequence)
 		console.log(currentContent)
 */
+
 		$('.markers .marker').siblings().removeClass('current')
 		$('.markers .marker').eq(index).addClass('current')
 		
@@ -91,18 +88,60 @@ Narrator = function() {
 		currentContent = currentSequence.previous();
 	}
 
-	this.playCurrentContent = function() {
+	
+	this.nextContent = function() {
 
-		console.log("playContent:", currentContent.name)
+		if( ! currentSequence || typeof(currentSequence) == "undefined" ) {
+			currentSequence = currentSection.next();
+			//currentSequence.reset();
+			currentContent = currentSequence.getItem(0);
+			console.log( "fetch 0 from!", currentSequence.name, currentContent.name )
+			currentSequence.currentItem = 0;
+		} else {
+			console.log( "cseq:", currentSequence );
+
+		}
+
+		if( currentContent.started || ! currentContent || typeof(currentContent) == "undefined" ) {
+			currentContent = currentSequence.next();
+			console.log( "fetch new from!", currentSequence )
+			currentContent = currentSequence.getItem( currentSequence.currentItem )
+		}
+
+		if( currentContent && currentContent != "done" && typeof( currentContent ) != "undefined" )  {
+
+			//currentContent.reset();
+
+			if( currentContent.getType() === "vimeoid" ) {
+				
+				//vimeoContent = currentContent;
+				//narrator.nextContent();
+			}
+			else if( currentSequence.vimeoPlaying ) {
+				var startSeconds = currentContent.getItem(0).playback.inicio ;
+				if ( startSeconds > preseektime )
+					startSeconds -= preseektime;
+				
+				if ( startSeconds > 0 )
+					gui.seekVimeo( startSeconds )
+
+			}
+
+
+		}
 		
-		if( currentContent==="done" ) {
-			
-			currentContent.started=false;
+		if( currentContent === "done" || ! currentContent || typeof(currentContent) == "undefined" ) {
 
 			currentSequence = currentSection.next();
-			if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {			
-				currentSequence.reset();
-			}
+//			currentSequence.reset();
+			currentContent = currentSequence.getItem( 0 );
+			currentSequence.currentItem = 0;
+//			currentContent = currentSequence.getItem( currentSequence.currentItem )
+			if( currentSequence === "done" && typeof(currentSequence) != "undefined" ) {	
+			}		
+			// if( currentSequence != "done" && typeof(currentSequence) != "undefined" ) {			
+				// currentSequence.reset();
+			// }
 		}
 		if( currentSequence === "done" ) {
 			clog( "IMPLEMENT currSeq Done" )
@@ -110,48 +149,16 @@ Narrator = function() {
 		if(currentSection==="done")
 			this.stop()
 
-	}
+		console.log("nextContent()", currentContent.name )
 
-	this.nextContent = function() {
-		console.log("nextContent():")
-		if( 1 ) { //currentContent.started ) {
-
-			if( currentContent.started ) {
-				currentContent = currentSequence.next();
-				console.log( currentContent, currentSequence )
-			}
-
-			if( currentContent != "done" && typeof( currentContent ) != "undefined" )  {
-
-				currentContent.reset();
-
-				if( currentContent.getType() === "vimeoid" ) {
-					this.playCurrentContent();
-					vimeoContent = currentContent;
-					narrator.nextContent();
-				}
-				else if( currentSequence.vimeoPlaying ) {
-					var startSeconds = currentContent.getItem(0).playback.inicio ;
-					if ( startSeconds > 1 )
-						startSeconds -= 1;
-					
-					if ( startSeconds > 0 )
-						gui.seekVimeo( startSeconds )
-
-				}
-
-			}
-			if(currentContent!=="done" && typeof( currentContent ) != "undefined" ) 
-
-			this.playCurrentContent();
-		}
-	
 	}
 
 	this.jumpToSequence = function(i) {
 		currentSequence = currentSection.getItem( i );
 		currentSequence.reset();
+		clog("CRRR"+ currentSequence.currentItem )
 		this.nextContent();	
+		clog("CRRR"+ currentSequence.currentItem )
 	}
 
 
@@ -300,9 +307,6 @@ Narrator = function() {
 		
 	}
 	
-	this.testVimeo = function() {
-		gui.openVimeo(0);
-	}
 
 
 	this.videoFwd = function (data){
@@ -352,7 +356,6 @@ Narrator = function() {
 		return currentContent;
 	}
 
-	lastTime = 0;
 	this.narrate = function() {
 
 		var newTime;
@@ -371,102 +374,102 @@ Narrator = function() {
 		if( ! currentSection )
 			clearInterval(this.narration)
 		else {
-			//currentContent = currentSequence.next();
-			if( typeof( currentContent ) == "undefined" || ! currentContent ) 
-			{
 
-				currentContent = currentSequence.next();
-				currentContent.startTime = newTime;
-				//console.log("open", currentContent)
+			if( currentSequence==="done") {
+				narrator.fwd();
 
-			}
-			if( currentContent === "done" ) {
-
-				console.log("DONE!" )
-				if( currentSequence !== "done" && typeof(currentSequence) != "undefined" ) {
-		
-		
-					currentContent = currentSequence.next();
-					currentContent.startTime = newTime;
-
-	
-					var items = currentSequence.getItems();
-					for( var h = 0; h<items.length; h++) {
-						items[h].started=false;
-						currentSequence.started=false;
-					}
-					if( currentContent === "done" && ! currentSequence.vimeoPlaying ) {
-						//console.log("newsq",currentSequence)
-						currentSequence = currentSection.next();
-						currentSequence.startTime = newTime;
-					}
-				}
-
-
-				
-				
+				//currentContent = currentSequence.next();
 			}
 			else {
+				if( typeof( currentContent ) == "undefined" || ! currentContent ) 
+				{
 
-				if( currentContent != "done" ) {
+					this.nextContent()
+					currentContent.startTime = newTime;
+					console.log("there was no CRRCNT!")
 
-					var timeToStartContent = false;
+				}
+				if( currentContent === "done" ) {
 
-					var contentTime = currentContent.getItem(0).playback.inicio * 1000;
-					var sequenceTime = currentSequence.startTime;
+					currentSequence = currentSection.next()
+					
+					if( currentSequence !== "done" && typeof(currentSequence) != "undefined" ) {
+			
+						currentContent = currentSequence.next();
+						currentContent.startTime = newTime;
 
-					//console.log("cCCC", currentSequence.startTime , currentContent.startTime )
-
-					if( newTime > ( contentTime + sequenceTime  ) || contentTime == 0 ) {
-						timeToStartContent = true;
-					} else {
-						gui.disableNext();
-
+		
+						var items = currentSequence.getItems();
+						for( var h = 0; h<items.length; h++) {
+							items[h].started=false;
+							currentSequence.started=false;
+						}
+						if( currentContent === "done" && ! currentSequence.vimeoPlaying ) {
+							//console.log("newsq",currentSequence)
+							currentSequence = currentSection.next();
+							currentSequence.startTime = newTime;
+						}
 					}
 
-					if( ! currentContent.started && timeToStartContent ) {
+
+					
+					
+				}
+				else { // != done
+
+						var timeToStartContent = false;
+
+						var contentTime = currentContent.getItem(0).playback.inicio * 1000;
+						var sequenceTime = currentSequence.startTime;
+
 						
-						//console.log("currentContent:",currentContent)
-						
-						for (var i = 0; i < currentContent.getItems().length; i++) {
-							gui.clearContentScreen();
-							gui.openContent( currentContent.getItems()[i] );
-							if( currentContent.getType() === "vimeoid" ) {
-								currentContent.done = true;
-							}
-							
+						if( newTime > ( contentTime + sequenceTime  ) || contentTime == 0 ) {
+							timeToStartContent = true;
+						} else {
+							if( newTime - ( contentTime + sequenceTime  ) < preseektime * 1000 )
+								gui.disableNext();
 
 						}
-						currentContent.started = true;
 
-						gui.enableNext();
-					}	
-					
-					if(  currentContent.started  && newTime > contentTime + sequenceTime +  currentContent.getItem(0).playback.duracion * 1000 && contentTime > 0 ){
-						currentContent.done = true;
-					
-					}
+						if( ! currentContent.started && timeToStartContent ) {
+							
+							//console.log("currentContent:",currentContent)
+							
+							for (var i = 0; i < currentContent.getItems().length; i++) {
+								gui.clearContentScreen();
+								console.log( "now open: ", currentContent.name  );
+								gui.openContent( currentContent.getItems()[i] );
+								if( currentContent.getType() === "vimeoid" ) {
+									currentContent.started = true;
+								}
+								
 
-					
+							}
+							currentContent.started = true;
 
-					if( currentContent.done ) {
-					
-						gui.clearContentScreen();
-						//console.log("clear()ar gui!!")
+							gui.enableNext();
+						}	
+						
+						if(  currentContent.started  && newTime > contentTime + sequenceTime +  currentContent.getItem(0).playback.duracion * 1000 && contentTime > 0 ){
+							currentContent.done = true;					
+						}
 
-						narrator.nextContent();
+						
 
-					}
+						if( currentContent.done ) {
+						
+							gui.clearContentScreen();
+							//console.log("clear()ar gui!!")
+
+							narrator.nextContent();
+
+						}
+
+
 				}
-				else {
-						console.log( "DINE!")
-				}
-			}
-		
 			
-					
-
-			if( currentSequence==="done") narrator.fwd();
+								
+			} // seq done -> n.fwd
 
 			
 		}

@@ -42,8 +42,12 @@ ElementList.prototype.removeItem = function( item_ ) {
 }
 
 ElementList.prototype.getItem = function( index_ ) {
-	if( index_ in this.items )
+	if( index_ in this.items ) {
+
+		//this.started = true;
+		this.done = false;
 		return this.items[ index_ ];
+	}
 	else
 		return false;	
 }
@@ -112,4 +116,5 @@ ElementList.prototype.reset = function() {
 	this.done = false;
 	this.currentItem = 0;
 	this.started = false;
+
 }

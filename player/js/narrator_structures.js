@@ -47,7 +47,7 @@ inheritPrototype( Sequence, ElementList );
 
 
 Sequence.prototype.next = function() {
-	var n = ElementList.prototype.next.apply(this);	
+	var n = ElementList.prototype.next.apply(this);
 	//console.log("Sequence NEXT::::", n.next());
 	return n;
 }
