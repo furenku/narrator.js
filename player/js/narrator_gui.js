@@ -110,7 +110,14 @@ NarratorGUI = function( parent ) {
 			if( mediaItem.getType() === "image" ) {
 
 				content = $('<img>').attr('src', mediaItem.media );
-				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );												
+				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );		
+				var vtable = makeDiv("","vcenter_content").html( content );
+				vtable = makeDiv("","vcenter_container").html( vtable );
+				vtable = makeDiv("","vcenter_table").html( vtable );
+				content = vtable;
+				$('.pantalla').eq(1).html( content )
+				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
+														
 				$('.pantalla').eq(1).html( content )
 
 			}
@@ -128,6 +135,7 @@ NarratorGUI = function( parent ) {
 				vtable = makeDiv("","vcenter_table").html( vtable );
 				content = vtable;
 				$('.pantalla').eq(1).html( content )
+				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 
 			}
 
@@ -150,7 +158,7 @@ NarratorGUI = function( parent ) {
 		   	
 			}
 
-
+/*
 			if( mediaItem.getType() === "text" ) {
 
 				var text = mediaItem.media;
@@ -168,7 +176,7 @@ NarratorGUI = function( parent ) {
 				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 			}
 
-
+*/
 /*
 			if( key === "imagenes" ) {
 				content = $('<img>').attr('src', mediaItem );
