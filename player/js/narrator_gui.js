@@ -111,7 +111,17 @@ NarratorGUI = function( parent ) {
 
 				content = $('<img>').attr('src', mediaItem.media );
 
-				console.log( "IW",content[0].naturalWidth )
+				var cW = content[0].naturalWidth;
+				var cH = content[0].naturalHeight;
+				var cR = cW / cR;
+				if( cW >= cR ) {
+					iH = $('.pantalla').eq(1).height();
+					iW = iH * cR;
+				} else {
+					iW = $('.pantalla').eq(1).width();
+					iH = iW / cR;
+				}
+				content.width( iW ).height( iH );
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );		
 				var vtable = makeDiv("","vcenter_content imgLiquid imgLiquidNoFill").html( content );
 				vtable = makeDiv("","vcenter_container").html( vtable );
