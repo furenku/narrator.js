@@ -115,11 +115,11 @@ NarratorGUI = function( parent ) {
 				var cH = content[0].naturalHeight;
 				var cR = cW / cR;
 				if( cW >= cR ) {
-					iH = $('.pantalla').eq(1).height();
-					iW = iH * cR;
-				} else {
 					iW = $('.pantalla').eq(1).width();
 					iH = iW / cR;
+				} else {
+					iH = $('.pantalla').eq(1).height();
+					iW = iH * cR;
 				}
 				content.width( iW ).height( iH );
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );		
