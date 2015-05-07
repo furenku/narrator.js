@@ -13,7 +13,8 @@ NarratorGUI = function( parent ) {
 		narrator.previousContent();
 	})
 	$('#next_arrow').click(function(){
-		narrator.nextContent();
+		gui.clearContentScreen();
+		narrator.nextContent( true );
 	})
 	$('#transport_play').click(function(){
 		narrator.play();
@@ -60,7 +61,9 @@ NarratorGUI = function( parent ) {
 			div.click(function(){
 				console.log( "jump to:" + $(this).index() );
 				narrator.jump( $(this).index() );
-				var seqdivs = div.find('.sequence_menu_option');
+				var seqdivs = $(this).find('.sequence_menu_option');
+				$('header #timeline_secuencias .markers').html('')
+				if( seqdivs.length > 1 )
 				seqdivs.each(function(i){
 					
 					var seqdiv = $(this);
@@ -138,9 +141,27 @@ NarratorGUI = function( parent ) {
 					$('.pantalla').eq(1).find('video').append(src);
 				}
 
-				$('.pantalla').eq(1).show();
-				$('.pantalla').eq(1).fadeIn();
+				
+				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 		   	
+			}
+
+
+			if( mediaItem.getType() === "text" ) {
+
+				var text = mediaItem.media;
+
+
+				$('.pantalla').eq(1).html( '' );
+				
+				var htmlstr = '<div class="text vcenter_table"><div class="vcenter_container"><div class="vcenter_content">';
+				htmlstr += text;
+				htmlstr += '</div></div></div>';
+				
+				$('.pantalla').eq(1).html( htmlstr );
+      
+
+				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 			}
 
 
@@ -298,10 +319,10 @@ NarratorGUI = function( parent ) {
 	this.clearContentScreen = function() {
 		//console.log("clera SSSSSCCCC")
 		//$('.pantalla').eq(1).find('video').fadeOut();
-		$('.pantalla').eq(1).hide();
-		$('.pantalla').eq(1).fadeOut(function(){
-		},1000)
-		$('.pantalla').eq(1).html('');
+		$('.pantalla').eq(1).stop().fadeOut(1000,function(){
+			$('.pantalla').eq(1).hide();
+			$('.pantalla').eq(1).html('');
+		})
 	}
 
 

@@ -89,7 +89,7 @@ Narrator = function() {
 	}
 
 	
-	this.nextContent = function() {
+	this.nextContent = function( shouldSeek ) {
 
 		if( ! currentSequence || typeof(currentSequence) == "undefined" ) {
 			currentSequence = currentSection.next();
@@ -123,7 +123,8 @@ Narrator = function() {
 					startSeconds -= preseektime;
 				
 				if ( startSeconds > 0 )
-					gui.seekVimeo( startSeconds )
+					if( shouldSeek )
+						gui.seekVimeo( startSeconds )
 
 			}
 

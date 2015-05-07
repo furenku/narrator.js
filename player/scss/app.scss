@@ -57,6 +57,9 @@ $fontXL: 32px;
 
 /******** HTML ********/
 
+html,body {
+	font-size: "Open Sans", sans-serif;
+}
 header {
 
 }
@@ -153,7 +156,7 @@ tipografia
 
 
 body {
-	background-color: #333;
+	background-color: #111;
 	font-family: "Open Sans";
 }
 
@@ -194,7 +197,7 @@ body {
 
 .progress_bar_holder{
 	position: relative;
-	background-color: #333;
+	background-color: #222;
 	&,div {
 		@extend .w100;
 	}
@@ -207,7 +210,7 @@ body {
 		margin: 0;
 		padding: 0;
 		height: $spacing / 3;
-		background-color: #333333;
+		background-color: #222222;
 		.progress {
 			border:none;
 			width:33%;
@@ -349,7 +352,7 @@ body {
 /* player */
 
 #player {
-	background-color: #222;
+	background-color: #000;
 
 	#pantallas {
 
@@ -370,91 +373,100 @@ body {
 			}
 		}
 			.pantalla {
-
-			@extend .abs;
-
-			background-color: #000;
-
-			display: inline-block;
-			
-			.media_player {
-				@extend .abs;
-				@extend .wh100;
-
-			}
-
-.media_tweet,
-.media_textos{
-	@extend .wh100;
-	.vcenter_content {
-		color: #fff;
-		padding: $spacing;
-		font-size: $fontXL;
-
-	}
-}
-			video {
-			  width: 100%    !important;
-			  height: auto   !important;
-			}
-
-			.tweet {
-				color: #fff;
-			}
-
-			.contenido {
-				background-color: #00f;
-
-
-
-
-
-			}
-
-
-			.contenedor {
-				&,div {
-				}
+				
 				@extend .abs;
 
-			}
+				background-color: #000;
 
-			.video {
-				@extend .contenedor;
-				width: 100%;
-			}
+				display: inline-block;
+				
+				.media_player {
+					@extend .abs;
+					@extend .wh100;
 
-			.scaler {
-				transform: scale(1);
-				-webkit-transition: -moz-transform 15s ease-out; 
-				-moz-transition: -webkit-transform 15s ease-out; 
-			}
-			
+				}
 
-			.tweet {
-				padding: $spacing;
-				background-color: #333;
-				border-radius: $spacing / 3;
-					.date {
-						font-size: $fontM;
+				.media_tweet,
+				.media_textos{
+					@extend .wh100;
+					.vcenter_content {
+						color: #fff;
+						padding: $spacing;
+						font-size: $fontXL;
 
-					}
-					div {
-						margin-bottom: $spacing / 4;
-					}
-				.user {		
-					.name, .avatar {
-						font-size: $fontL;
-						height: $spacing * 1.5;
-					}
-					.name {
-						line-height: $spacing * 1.5;
-						padding-left: $spacing;
 					}
 				}
-			}
+				video {
+				  width: 100%    !important;
+				  height: auto   !important;
+				}
 
-		}
+				.tweet {
+					color: #fff;
+				}
+
+				.contenido {
+					background-color: #00f;
+
+
+
+
+
+				}
+				
+
+				.text {
+					font-size: $fontL;
+					color: white;
+					.vcenter_content {
+						width:70%;
+						
+					}
+				}
+
+				.contenedor {
+					&,div {
+					}
+					@extend .abs;
+
+				}
+
+				.video {
+					@extend .contenedor;
+					width: 100%;
+				}
+
+				.scaler {
+					transform: scale(1);
+					-webkit-transition: -moz-transform 15s ease-out; 
+					-moz-transition: -webkit-transform 15s ease-out; 
+				}
+				
+
+				.tweet {
+					padding: $spacing;
+					background-color: #333;
+					border-radius: $spacing / 3;
+						.date {
+							font-size: $fontM;
+
+						}
+						div {
+							margin-bottom: $spacing / 4;
+						}
+					.user {		
+						.name, .avatar {
+							font-size: $fontL;
+							height: $spacing * 1.5;
+						}
+						.name {
+							line-height: $spacing * 1.5;
+							padding-left: $spacing;
+						}
+					}
+				}
+
+			}
 	}
 }
 

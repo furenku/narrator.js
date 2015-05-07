@@ -12,6 +12,7 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/momentjs/min/moment.min.js"></script>
     
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 
 

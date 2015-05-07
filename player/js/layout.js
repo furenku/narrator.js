@@ -4,7 +4,7 @@ var wH = $(window).height();
 
 function crearPantallas() {
 
-  var pW = wW / 2;
+  var pW = wW;
   var pH = ( pW ) / (16/9);
   var pantallas = Array();
   pantallas.push({name:"A",width: pW,height:pH});
@@ -29,8 +29,8 @@ function crearPantallas() {
 
       pantalla.width( pantallas[i].width ).height( pantallas[i].height ).css({    left: scrW, top: scrH });
 
-      scrW = scrW + pantallas[i].width;
-      //scrW = 0;
+      //scrW = scrW + pantallas[i].width;
+      scrW = 0;
           
       var cnt = '';
       
