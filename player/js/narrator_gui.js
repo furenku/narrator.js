@@ -111,7 +111,7 @@ NarratorGUI = function( parent ) {
 
 				content = $('<img>').attr('src', mediaItem.media );
 				content = $('<a>').attr('href',mediaItem).attr('data-lightbox',"content").attr('data-title','').html( content );		
-				var vtable = makeDiv("","vcenter_content").html( content );
+				var vtable = makeDiv("","vcenter_content imgLiquid imgLiquidNoFill").html( content );
 				vtable = makeDiv("","vcenter_container").html( vtable );
 				vtable = makeDiv("","vcenter_table").html( vtable );
 				content = vtable;
@@ -119,6 +119,8 @@ NarratorGUI = function( parent ) {
 				$('.pantalla').eq(1).stop().show().css({opacity:0}).animate({opacity:1},1000);
 
 				$('.pantalla').eq(1).html( content )
+
+				$('.imgLiquidNoFill').imgLiquid({fill:false})
 
 			}
 

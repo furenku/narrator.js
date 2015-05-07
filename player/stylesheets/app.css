@@ -9564,27 +9564,22 @@ body {
   background-color: #333;
   float: left;
 }
-/* line 384, ../scss/app.scss */
+/* line 385, ../scss/app.scss */
 #player #pantallas .pantalla {
   background-color: #000;
   display: inline-block;
 }
-/* line 401, ../scss/app.scss */
+/* line 402, ../scss/app.scss */
 #player #pantallas .pantalla .media_tweet .vcenter_content,
 #player #pantallas .pantalla .media_textos .vcenter_content {
   color: #fff;
   padding: 30px;
   font-size: 32px;
 }
-/* line 408, ../scss/app.scss */
+/* line 409, ../scss/app.scss */
 #player #pantallas .pantalla video {
   width: 100%    !important;
   height: auto   !important;
-}
-/* line 413, ../scss/app.scss */
-#player #pantallas .pantalla img {
-  max-width: 100%;
-  max-height: 100%;
 }
 /* line 418, ../scss/app.scss */
 #player #pantallas .pantalla .tweet {
